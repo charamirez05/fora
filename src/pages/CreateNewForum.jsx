@@ -25,10 +25,10 @@ const CreateNewForum = ({ addJobSubmit }) => {
             title,
             content,
             date: new Date(),
-            comments: [           
+            comments: [
                 {
-                    content: "",     
-                    date: ""         
+                    content: "",
+                    date: ""
                 }
             ],
             stars: 0,
@@ -42,17 +42,22 @@ const CreateNewForum = ({ addJobSubmit }) => {
         return navigate('/ViewForums/All');
     }
     return (
-        <section className="bg-indigo-50">
+        <div style={{ backgroundColor: "rgba(209, 250, 229, 0.3)", }} // bg-green-50
+        >
             <div className="container m-auto max-w-2xl py-24">
                 <div
                     className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
                 >
                     <form onSubmit={submitForm}>
-                        <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2>
+                        <h2
+                            style={{ color: "#3F826D" }}
+                            className="text-3xl text-center font-semibold mb-6">Add Job</h2>
 
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2"
+                            <label
+                                style={{ color: "#3F826D" }}
+                                className="block text-gray-700 font-bold mb-2"
                             >Author</label
                             >
                             <input
@@ -68,7 +73,9 @@ const CreateNewForum = ({ addJobSubmit }) => {
                         </div>
 
                         <div className="mb-4">
-                            <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
+                            <label
+                                style={{ color: "#3F826D" }}
+                                htmlFor="type" className="block text-gray-700 font-bold mb-2"
                             >Topic</label
                             >
                             <select
@@ -89,7 +96,9 @@ const CreateNewForum = ({ addJobSubmit }) => {
 
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2"
+                            <label
+                                style={{ color: "#3F826D" }}
+                                className="block text-gray-700 font-bold mb-2"
                             >Title</label
                             >
                             <input
@@ -105,6 +114,7 @@ const CreateNewForum = ({ addJobSubmit }) => {
                         </div>
                         <div className="mb-4">
                             <label
+                                style={{ color: "#3F826D" }}
                                 htmlFor="content"
                                 className="block text-gray-700 font-bold mb-2"
                             >Content</label
@@ -141,7 +151,7 @@ const CreateNewForum = ({ addJobSubmit }) => {
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 
