@@ -1,43 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from './PostCard'
-import posts from '../posts.json'
-import forums from '../forums.json'
+import { useForum } from '../contexts/ForumContext'
 
 const PostListings = () => {
 
-    const [generalTopic, setGeneralTopic] = useState([]);
-    const [mathTopic, setMathTopic] = useState([]);
-    const [popCultureTopic, setPopCultureTopic] = useState([]);
-
-
-    const sortForums = () => {
-        let generalTopicArray = [];
-        let mathTopicArray = [];
-        let popCultureTopicArray = []
-
-        forums.forEach(forum => {
-            console.log(forum.topic)
-            if (forum.topic === "general")
-                generalTopicArray = [...generalTopicArray, forum];
-            else if (forum.topic === "math")
-                mathTopicArray = [...mathTopicArray, forum];
-            else if (forum.topic === "popculture")
-                popCultureTopicArray = [...popCultureTopicArray, forum];
-
-        });
-
-        setGeneralTopic(generalTopicArray);
-        setMathTopic(mathTopicArray);
-        setPopCultureTopic(popCultureTopicArray);
-        console.log(generalTopic);
-    }
+    const {forums, generalForum, mathForum, popCultureForum, fetchForums, setForumTopics} = useForum();
+    
 
     useEffect(() => {
-        sortForums();
-    }, [])
 
+        fetchForums();
+        setForumTopics();
 
-
+      
+    
+    }, [forums]);
 
 
     return (
@@ -87,7 +64,7 @@ const PostListings = () => {
                         }}
                     >
                         {
-                            generalTopic.map((post) => (
+                            generalForum.map((post) => (
                                 <PostCard key={post.id} post={post} />
                             ))
                         }
@@ -97,7 +74,7 @@ const PostListings = () => {
 
                 </div >
 
-                <div >
+                 <div >
 
                     <div style={{ display: "flex", alignItems: "center", marginBottom: "10px", marginTop: "30px" }}>
 
@@ -108,7 +85,7 @@ const PostListings = () => {
                             marginLeft: "5px",
                             fontWeight: "bold",
                             marginRight: "10px"
-                        }}>{/*  {isHome ? 'Recent Jobs' : 'Browse Jobs'} */} Math Forum
+                        }}> Math Forum
                         </h2>
                         <button
                             style={{
@@ -137,7 +114,7 @@ const PostListings = () => {
                         }}
                     >
                         {
-                            mathTopic.map((post) => (
+                            mathForum.map((post) => (
                                 <PostCard key={post.id} post={post} />
                             ))
                         }
@@ -160,7 +137,7 @@ const PostListings = () => {
                             fontWeight: "bold",
                             marginRight: "10px"
                         }}>
-                            {/*  {isHome ? 'Recent Jobs' : 'Browse Jobs'} */} Pop Culture Forum
+                             Pop Culture Forum
                         </h2>
 
                         <button
@@ -188,14 +165,14 @@ const PostListings = () => {
                         }}
                     >
                         {
-                            popCultureTopic.map((post) => (
+                            popCultureForum.map((post) => (
                                 <PostCard key={post.id} post={post} />
                             ))
                         }
                     </div>
-                  
+
                 </div>
-              
+
 
 
             </div >

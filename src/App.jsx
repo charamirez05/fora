@@ -3,13 +3,18 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import PostCard from './components/PostCard'
 import PostListings from './components/PostListings'
+import { ForumProvider } from './contexts/ForumContext'
+
 
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <PostListings/>
+      <ForumProvider>
+        <Navbar />
+        <Hero />
+        <PostListings />
+      </ForumProvider>
+
     </>
   )
 }
