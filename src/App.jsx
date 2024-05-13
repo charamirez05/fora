@@ -19,7 +19,7 @@ const App = () => {
       <Route path='/' element={<MainLayout />}>
         <Route index element={<HomePage isHome={true} />} />
         <Route path='/viewForums/:forumTopic' element={<ForumsPage />} />
-        <Route path='/viewForum/:id' element={<ForumPage />} />
+        <Route path='/viewForum/:id' element={<ForumPage />}  />
 
 
         <Route path='/createNewForum' element={<CreateNewForum />} />

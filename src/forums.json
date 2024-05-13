@@ -1,7 +1,6 @@
 {
   "forums": [
     {
-      "id": "1",
       "author": "Jú",
       "title": "solution-oriented",
       "content": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
@@ -20,8 +19,9 @@
           "date": "5/12/2023"
         }
       ],
-      "stars": 38,
-      "topic": "general"
+      "stars": 44,
+      "topic": "general",
+      "id": "1"
     },
     {
       "id": "2",
@@ -75,7 +75,6 @@
       "topic": "math"
     },
     {
-      "id": "3",
       "author": "Bénédicte",
       "title": "Versatile",
       "content": "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
@@ -98,8 +97,9 @@
           "date": "5/20/2023"
         }
       ],
-      "stars": 4,
-      "topic": "general"
+      "stars": 6,
+      "topic": "general",
+      "id": "3"
     },
     {
       "id": "4",
@@ -121,14 +121,14 @@
       "topic": "general"
     },
     {
-      "id": "5",
       "author": "Thérèse",
       "title": "throughput",
       "content": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
       "date": "8/28/2023",
       "comments": [],
-      "stars": 114,
-      "topic": "math"
+      "stars": 116,
+      "topic": "math",
+      "id": "5"
     },
     {
       "id": "6",

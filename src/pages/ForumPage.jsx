@@ -1,25 +1,52 @@
-import React, { useEffect } from 'react'
-import { FaArrowLeft, FaMapMarker } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react'
+import { FaArrowLeft, FaMapMarker, FaStar } from 'react-icons/fa'
 import { Link, useParams } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext';
 import ForumCommentCard from '../components/ForumCommentCard';
+import { toast } from 'react-toastify';
+
 
 
 const ForumPage = () => {
 
-  const { forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum } = useForum();
+  const { forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum, updatePostStar } = useForum();
 
   const { id } = useParams();
 
 
 
+  const ratePost = () => {
+
+    const updatedForum = {
+      author: forum.author,
+      title: forum.title,
+      content: forum.content,
+      date: forum.date,
+      comments: forum.comments,
+      stars: forum.stars + 1,
+      topic: forum.topic
+    }
+
+
+    updatePostStar(updatedForum, id);
+
+    toast.success("Forum rated successfully!");
+
+    console.log("ha")
+  }
+
+
   useEffect(() => {
     getForumByID(id);
 
-  }, []);
+  }, [ratePost]);
+
+
+
 
 
   return (
+
     <div style={{
       backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
 
@@ -30,7 +57,8 @@ const ForumPage = () => {
           to={`/viewForums/${forum.topic}`}
           className="text-indigo-500 hover:text-indigo-600 flex items-center"
         >
-          <FaArrowLeft className='mr-2' /> Back to forum Listings
+          <FaArrowLeft className='mr-2' style={{ color: "#3F826D" }} />
+          <h1 style={{ color: "#3F826D", fontWeight: "bold" }} > Back to Forum Listings</h1>
         </Link>
       </div>
 
@@ -41,10 +69,10 @@ const ForumPage = () => {
           className="bg-white p-6 rounded-lg shadow-md text-center md:text-left"
           style={{ position: "relative", paddingBottom: "50px" }}
         >
-          <div className="text-gray-500 mb-4">{forum.date.split("T")[0]}</div>
-          <h1 
-          style={{color:"#3F826D"}}
-          className="text-3xl font-bold mb-4">
+          <div className="text-gray-500 mb-4">{forum.date}</div>
+          <h1
+            style={{ color: "#3F826D" }}
+            className="text-3xl font-bold mb-4">
             {forum.title}
           </h1>
           <div
@@ -65,12 +93,26 @@ const ForumPage = () => {
 
           </div>
           <div style={{ display: "flex", position: 'absolute', bottom: 0, left: 50 }}>
-
-            <p className="mb-4">{forum.stars} Stars</p>
+             
+            <p className="mb-4" style={{ fontWeight: "bold" }}>{forum.stars} Stars</p>
           </div>
-          <div style={{ display: "flex", position: 'absolute', bottom: -2, right: 50 }}>
+          <div style={{ display: "flex", position: 'absolute', bottom: -3, right: 50 }}>
 
-            <p
+            <button
+              className="mb-4"
+              style={{
+
+                paddingRight: "30px",
+                fontWeight: "bold",
+                fontSize: "20px",
+                color: "#E2725B"
+              }}
+              onClick={ratePost}
+            >
+              Rate
+            </button>
+
+            <button
               className="mb-4"
               style={{
 
@@ -80,8 +122,8 @@ const ForumPage = () => {
                 color: "#E2725B"
               }}>
               Add a Comment
-            </p>
-            <p className="mb-4"
+            </button>
+            <button className="mb-4"
               style={{
 
                 paddingRight: "30px",
@@ -90,7 +132,7 @@ const ForumPage = () => {
                 color: "#E2725B"
               }}>
               Delete
-            </p>
+            </button>
           </div>
 
 

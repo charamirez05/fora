@@ -14,7 +14,7 @@ export function ForumProvider({ children }) {
 
 
     const [forums, setForums] = useState([]);
-    const [forum, setForum] = useState(null);
+    const [forum, setForum] = useState("");
 
     const [generalForum, setGeneralForum] = useState([]);
     const [mathForum, setMathForum] = useState([]);
@@ -92,7 +92,6 @@ export function ForumProvider({ children }) {
         try {
             const res = await fetch(`/api/forums/${forumId}`);
             const data = await res.json();
-            console.log(data)
             setForum(data);
 
 
@@ -103,8 +102,22 @@ export function ForumProvider({ children }) {
 
 
 
+    const updatePostStar = async (updatedPost, forumId) => {
+        const res = await fetch(`/api/forums/${forumId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedPost),
+        });
+
+        return;
+    }
+
+
+
     return (
-        <ForumContext.Provider value={{ forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum }}>
+        <ForumContext.Provider value={{ forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum, updatePostStar}}>
 
             {children}
 
