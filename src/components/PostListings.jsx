@@ -12,8 +12,6 @@ const PostListings = () => {
         fetchForums();
         setForumTopics();
 
-      
-    
     }, [forums]);
 
 

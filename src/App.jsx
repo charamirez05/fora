@@ -4,15 +4,14 @@ import Hero from './components/Hero'
 import PostCard from './components/PostCard'
 import PostListings from './components/PostListings'
 import { ForumProvider } from './contexts/ForumContext'
+import HomePage from './pages/HomePage'
 
 
 const App = () => {
   return (
     <>
       <ForumProvider>
-        <Navbar />
-        <Hero />
-        <PostListings />
+       <HomePage/>
       </ForumProvider>
 
     </>
