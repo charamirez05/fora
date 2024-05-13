@@ -75,9 +75,22 @@ export function ForumProvider({ children }) {
     }
 
 
+    const createNewForum = async (newForum) => {
+        const res = await fetch('/api/forums', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newForum),
+          });
+      
+          return;
+    }
+
+
 
     return (
-        <ForumContext.Provider value={{ forums, generalForum, mathForum, popCultureForum, fetchForums, setForumTopics }}>
+        <ForumContext.Provider value={{ forums, generalForum, mathForum, popCultureForum, fetchForums, setForumTopics, createNewForum }}>
 
             {children}
 

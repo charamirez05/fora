@@ -16,17 +16,16 @@ const ForumsPage = () => {
 
 
   const formToUseFunction = () => {
-    console.log(forumTopic);
-
+    
     let newForumObject;
 
-    if (forumTopic === 'All') {
+    if (forumTopic === 'All' || forumTopic === 'all' ) {
       newForumObject = forums;
-    } else if (forumTopic === 'General') {
+    } else if (forumTopic === 'General' || forumTopic === 'general') {
       newForumObject = generalForum;
-    } else if (forumTopic === 'Math') {
+    } else if (forumTopic === 'Math' || forumTopic === 'math') {
       newForumObject = mathForum;
-    } else if (forumTopic === 'PopCulture') {
+    } else if (forumTopic === 'PopCulture' || forumTopic === 'popculture') {
       newForumObject = popCultureForum;
     }
 
@@ -41,12 +40,12 @@ const ForumsPage = () => {
 
     formToUseFunction();
 
-  }, [forums, forumTopic]);
+  }, [forums, ]);
 
 
   return (
 
-    <ForumsListing isHome={false} forum={forumObject} />
+    <ForumsListing isHome={false} forum={forumObject} forumTopic={forumTopic} />
 
   )
 }
