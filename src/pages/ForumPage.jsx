@@ -93,7 +93,7 @@ const ForumPage = () => {
 
           </div>
           <div style={{ display: "flex", position: 'absolute', bottom: 0, left: 50 }}>
-             
+
             <p className="mb-4" style={{ fontWeight: "bold" }}>{forum.stars} Stars</p>
           </div>
           <div style={{ display: "flex", position: 'absolute', bottom: -3, right: 50 }}>
