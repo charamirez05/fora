@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import PostListings from '../components/PostListings'
 
-const HomePage = () => {
+import ForumLayout from '../layouts/ForumLayout'
+
+const HomePage = ({ isHome }) => {
+
+    
+
     return (
         <>
-            <Navbar />
             <Hero />
-            <PostListings />
+           <ForumLayout/>
         </>
     )
 }

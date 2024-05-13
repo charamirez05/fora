@@ -1,11 +1,20 @@
 import React from 'react'
+import { Link, NavLink, useNavigate} from 'react-router-dom';
 
 const Hero = () => {
 
     const buttonClick = (e) => {
         e.preventDefault();
 
-        console.log("ho?");
+       
+    }
+
+    const navigate = useNavigate();
+
+    const onViewForum = (forumTopic) =>{
+       
+        navigate(`/viewForums/${forumTopic}`);
+
     }
     return (
         <div style={{
@@ -18,7 +27,7 @@ const Hero = () => {
             <div
                 style={{ display: "flex", marginBottom: "20px"}}
             >
-                <button
+                <NavLink
                     style={{
                         color: "#FFFFFF",
                         backgroundColor: "#3F826D",
@@ -26,10 +35,11 @@ const Hero = () => {
                         padding: "10px",
                         borderRadius: "10px",
                         display: "block"
-                    }}>
+                    }}
+                    to='/createNewForum'>
                     + Add Post
-                </button>
-
+                </NavLink>
+                
                 <button
                     style={{
                         color: "#FFFFFF",
@@ -39,7 +49,10 @@ const Hero = () => {
                         borderRadius: "10px",
                         display: "block",
                         marginLeft: "20px"
-                    }}>
+                    }}
+                    onClick={() => onViewForum("All")}
+                    >
+                   
                     View All Forums
                 </button>
 

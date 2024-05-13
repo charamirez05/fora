@@ -15,7 +15,7 @@ const Navbar = () => {
                         className="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
                     >
 
-                        <a className="flex flex-shrink-0 items-center mr-4"
+                        <NavLink className="flex flex-shrink-0 items-center mr-4"
                             to="/">
                             <img
                                 style={{height:"55px"}}
@@ -52,7 +52,7 @@ const Navbar = () => {
                             </div>
 
 
-                        </a>
+                        </NavLink>
                        
                     </div>
                 </div>

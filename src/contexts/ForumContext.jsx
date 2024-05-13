@@ -27,6 +27,7 @@ export function ForumProvider({ children }) {
             const res = await fetch('/api/forums')
             const data = await res.json();
             setForums(data);
+            
            
         } catch {
             console.log("Error fetching data.", error);
@@ -34,7 +35,7 @@ export function ForumProvider({ children }) {
     }
 
 
-    const setForumTopics = () => {
+    const setForumTopics = (isHome) => {
         let generalTopicArray = [];
         let mathTopicArray = [];
         let popCultureTopicArray = []
@@ -59,9 +60,18 @@ export function ForumProvider({ children }) {
 
         });
 
-        setGeneralForum(generalTopicArray);
-        setMathForum(mathTopicArray);
-        setPopCultureForum(popCultureTopicArray);
+        
+        if(isHome){
+            setGeneralForum(generalTopicArray.slice(0,3));
+            setMathForum(mathTopicArray.slice(0,3));
+            setPopCultureForum(popCultureTopicArray.slice(0,3));
+        }
+        else{
+            setGeneralForum(generalTopicArray);
+            setMathForum(mathTopicArray);
+            setPopCultureForum(popCultureTopicArray);
+        }
+      
     }
 
 
