@@ -14,6 +14,7 @@ export function ForumProvider({ children }) {
 
 
     const [forums, setForums] = useState([]);
+    const [forum, setForum] = useState(null);
 
     const [generalForum, setGeneralForum] = useState([]);
     const [mathForum, setMathForum] = useState([]);
@@ -27,8 +28,8 @@ export function ForumProvider({ children }) {
             const res = await fetch('/api/forums')
             const data = await res.json();
             setForums(data);
-            
-           
+
+
         } catch {
             console.log("Error fetching data.", error);
         }
@@ -60,18 +61,18 @@ export function ForumProvider({ children }) {
 
         });
 
-        
-        if(isHome){
-            setGeneralForum(generalTopicArray.slice(0,3));
-            setMathForum(mathTopicArray.slice(0,3));
-            setPopCultureForum(popCultureTopicArray.slice(0,3));
+
+        if (isHome) {
+            setGeneralForum(generalTopicArray.slice(0, 3));
+            setMathForum(mathTopicArray.slice(0, 3));
+            setPopCultureForum(popCultureTopicArray.slice(0, 3));
         }
-        else{
+        else {
             setGeneralForum(generalTopicArray);
             setMathForum(mathTopicArray);
             setPopCultureForum(popCultureTopicArray);
         }
-      
+
     }
 
 
@@ -79,18 +80,31 @@ export function ForumProvider({ children }) {
         const res = await fetch('/api/forums', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(newForum),
-          });
-      
-          return;
+        });
+
+        return;
+    }
+
+    const getForumByID = async (forumId) => {
+        try {
+            const res = await fetch(`/api/forums/${forumId}`);
+            const data = await res.json();
+            console.log(data)
+            setForum(data);
+
+
+        } catch {
+            console.log("Error fetching data.", error);
+        }
     }
 
 
 
     return (
-        <ForumContext.Provider value={{ forums, generalForum, mathForum, popCultureForum, fetchForums, setForumTopics, createNewForum }}>
+        <ForumContext.Provider value={{ forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum }}>
 
             {children}
 

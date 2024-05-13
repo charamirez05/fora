@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ForumCard from './ForumCard'
 import { Link, useNavigate } from 'react-router-dom'
+import { FaArrowLeft } from 'react-icons/fa';
 
 
 const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
@@ -24,8 +25,8 @@ const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
 
         <div style={{
             backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
-         
-          }}>
+
+        }}>
             <div className="container m-auto max-w-8xl py-4">
                 <div
                     className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
@@ -35,37 +36,72 @@ const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
                     <div >
 
                         <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                            <h2
-                                style={{
-                                    color: "#3F826D",
-                                    fontSize: "20px",
-                                    marginLeft: "5px",
-                                    fontWeight: "bold",
-                                    marginRight: "10px"
-                                }}
-                            >
 
-                                {forumTopic} Forums
-                            </h2>
+                            <div 
+                            style={{ display: "flex", }}
+                            className="container m-auto">
+                                {!isHome ? (
+                                    <Link
+                                    to={forumTopic === 'All' ? '/' : '/viewForums/All'}
+                                        className="text-indigo-500 hover:text-indigo-600 flex items-center"
+                                    >
+                                        <FaArrowLeft
+                                            className='mr-2'
+                                            style={{ color: '#E2725B' }} />
+                                        <h2
+                                            style={{
+                                                color: "#3F826D",
+                                                fontSize: "20px",
+                                                marginLeft: "5px",
+                                                fontWeight: "bold",
+                                                marginRight: "10px"
+                                            }}
+                                        >
+                                            {forumTopic} Forums
 
-                            {isHome ? (
-                                <button
-                                    style={{
-                                        color: "#FFFFFF",
-                                        backgroundColor: "#3F826D",
-                                        fontWeight: "bold",
-                                        padding: "5px",
-                                        borderRadius: "10px",
+                                        </h2>
+                                    </Link>
+                                ) : (
+                                    <h2
+                                        style={{
+                                            color: "#3F826D",
+                                            fontSize: "20px",
+                                            marginLeft: "5px",
+                                            fontWeight: "bold",
+                                            marginRight: "10px"
+                                        }}
+                                    >
 
-                                    }}
-                                    onClick={() => onViewForum(forumTopic)}>
+                                        {forumTopic} Forums
+                                    </h2>
+                                )}
 
 
-                                    View All
-                                </button>
-                            ) : (
-                                <> </>
-                            )}
+
+                                {isHome ? (
+                                    <button
+                                        style={{
+                                            color: "#FFFFFF",
+                                            backgroundColor: "#3F826D",
+                                            fontWeight: "bold",
+                                            padding: "5px",
+                                            borderRadius: "10px",
+
+                                        }}
+                                        onClick={() => onViewForum(forumTopic)}>
+
+
+                                        View All
+                                    </button>
+                                ) : (
+                                    <> </>
+                                )}
+
+                            </div>
+
+
+
+
 
 
 
