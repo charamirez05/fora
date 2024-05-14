@@ -9,10 +9,11 @@ const HomePage = ({ isHome }) => {
     
 
     return (
-        <>
+        <
+        >
             <Hero />
            <ForumLayout/>
-        </>
+        </ >
     )
 }
 

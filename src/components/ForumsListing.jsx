@@ -22,16 +22,18 @@ const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
 
     return (
 
+        
+        
         <div style={{
             backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
 
         }}>
-            <div className="container m-auto max-w-8xl ">
-                <div className=" bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0  ">
+            <div className="container m-auto py-4 max-w-8xl ">
+                <div className=" bg-white px-6 py-8 mb-6 shadow-md rounded-md border m-4 md:m-0  ">
 
                     <div >
 
-                        <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+                        <div style={{ display: "flex", alignItems: "center", marginBottom: "0px" }}>
 
                             <div
                                 style={{ display: "flex", }}

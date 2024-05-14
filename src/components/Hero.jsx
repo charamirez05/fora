@@ -18,17 +18,24 @@ const Hero = () => {
     }
     return (
 
-      
-            <div style={{
-                display: "block",
-                padding: "50px",
-                backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
-                paddingLeft: "100px"
-            }}
-                >
+
+        <div style={{
+
+            backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
+
+        }}>
+
+            <div
+
+                className="container m-auto max-w-12xl  py-16"
+            >
 
                 <div
-                    style={{ display: "flex", }}
+                    style={{
+                        display: "flex",
+                        position: "absolute",
+
+                    }}
                 >
                     <NavLink
                         style={{
@@ -51,7 +58,8 @@ const Hero = () => {
                             padding: "10px",
                             borderRadius: "10px",
                             display: "block",
-                            marginLeft: "20px"
+                            marginLeft: "20px",
+                            marginRight: '1000px'
                         }}
                         onClick={() => onViewForum("All")}
                     >
@@ -59,36 +67,37 @@ const Hero = () => {
                         View All Forums
                     </button>
 
-                    <form onSubmit={buttonClick}
-                        style={{
-                            position: "relative",
-                            left: 750,
 
 
-                        }}>
+                    <form onSubmit={buttonClick} 
+                   >
                         <input type="text" name="" id="" placeholder="Search post (author, title)"
                             style={{
-                                width: '200px', 
+                                width: '200px',
                                 border: "3px solid #E2725B",
                                 fontWeight: "bold",
-                                padding: "5px"
+                                padding: "5px",
+                                
                             }} />
                         <button type="submit" style={{
                             color: "#FFFFFF",
                             backgroundColor: "#E2725B",
                             fontWeight: "bold",
                             borderColor: "#E2725B",
-                            
+
                             padding: "8px"
                         }}> Search </button>
                     </form>
-
                 </div>
 
 
 
+
+
+
             </div>
-        
+        </div>
+
 
     )
 }
