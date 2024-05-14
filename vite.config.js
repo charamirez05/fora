@@ -9,7 +9,7 @@ export default defineConfig({
       '/forums': {
         target: 'https://fora-backend.onrender.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        
       }
     }
   }
