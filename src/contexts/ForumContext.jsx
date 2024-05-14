@@ -25,7 +25,7 @@ export function ForumProvider({ children }) {
     const fetchForums = async () => {
 
         try {
-            const res = await fetch('/api/forums')
+            const res = await fetch('/forums')
             const data = await res.json();
             setForums(data);
 
@@ -77,7 +77,7 @@ export function ForumProvider({ children }) {
 
 
     const createNewForum = async (newForum) => {
-        const res = await fetch('/api/forums', {
+        const res = await fetch('/forums', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ export function ForumProvider({ children }) {
 
     const getForumByID = async (forumId) => {
         try {
-            const res = await fetch(`/api/forums/${forumId}`);
+            const res = await fetch(`/forums/${forumId}`);
             const data = await res.json();
             setForum(data);
 
@@ -103,7 +103,7 @@ export function ForumProvider({ children }) {
 
 
     const updateForumStar = async (updatedPost, forumId) => {
-        const res = await fetch(`/api/forums/${forumId}`, {
+        const res = await fetch(`/forums/${forumId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -115,7 +115,7 @@ export function ForumProvider({ children }) {
     }
 
     const removeForum = async (forumId) => {
-        const res = await fetch(`/api/forums/${forumId}`, {
+        const res = await fetch(`/forums/${forumId}`, {
             method: 'DELETE',  
         });
 
