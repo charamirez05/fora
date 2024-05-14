@@ -54,8 +54,7 @@ const ForumPage = () => {
 
   useEffect(() => {
     getForumByID(id);
-    console.log(forum.comments)
-  }, [rateForum, deleteForum]);
+  }, []);
 
 
 
@@ -167,7 +166,7 @@ const ForumPage = () => {
       <div
 
       >
-        {forum.comments.length !== 0 ? (
+        {forum &&  forum.comments && forum.comments.length !== 0 ? (
           forum.comments.map((comment) => (
 
             <ForumCommentCard comment={comment} />
@@ -182,6 +181,7 @@ const ForumPage = () => {
 
         )
         }
+       
       </div>
 
 
