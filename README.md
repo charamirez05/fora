@@ -14,3 +14,13 @@ As of May 14, 2024, the starting features are:
 Plans for to-be-implemented features:
 - Filter forums by category (e.g. author, date, title)
 - Search forum/post by category (e.g. author, date, title)
+
+
+
+> Backend JSON Server is separately deployed in Render.
+
+
+>Frontend is deployed in Render.
+
+
+>The backend used in the master branch is the *deployed* JSON server
