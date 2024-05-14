@@ -123,9 +123,21 @@ export function ForumProvider({ children }) {
     }
 
 
+    const addComment = async (newComment, forumId) => {
+        const res = await fetch(`https://fora-backend.onrender.com/forums/${forumId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newComment),
+        });
+
+        return;
+    }
+
 
     return (
-        <ForumContext.Provider value={{ forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum, updateForumStar, removeForum}}>
+        <ForumContext.Provider value={{ forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum, updateForumStar, removeForum, addComment}}>
 
             {children}
 

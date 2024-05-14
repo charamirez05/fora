@@ -11,6 +11,7 @@ import CreateNewForum from './pages/CreateNewForum'
 import ForumPage from './pages/ForumPage'
 
 
+
 const App = () => {
 
 
@@ -20,7 +21,7 @@ const App = () => {
         <Route index element={<HomePage isHome={true} />} />
         <Route path='/viewForums/:forumTopic' element={<ForumsPage />} />
         <Route path='/viewForum/:id' element={<ForumPage />}  />
-
+      
 
         <Route path='/createNewForum' element={<CreateNewForum />} />
       </Route>

@@ -7,20 +7,39 @@ const ForumCommentCard = ({ comment }) => {
             className="container m-auto "
         >
             <div
+
                 className="bg-white p-4 rounded-lg shadow-md text-center md:text-left"
             >
-                <div 
-                
-                className=" text-gray-500">{comment.date.split("T")[0]}</div>
-                <div className="bg-white p-6 rounded-lg shadow-md mt-4">
+
+                <div style={{ display: "flex" }}>
+                    <div
+                        style={{ fontWeight: 'bold', color: "#E2725B" }}
+                    >
+
+                        {comment.author}
+
+                    </div>
+
+                    <div
+
+                        className=" text-gray-500"> &nbsp;{comment.date.split("T")[0]}
+
+                    </div>
+                </div>
+
+
+                <div
+                    style={{ borderBottom: "2px solid #E2725B", }}
+                    className="bg-white p-6 rounded-lg shadow-md mt-4">
 
                     <p>
                         {comment.content}
                     </p>
                 </div>
 
-
             </div>
+
+
 
 
 

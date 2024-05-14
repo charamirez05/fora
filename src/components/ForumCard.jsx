@@ -8,11 +8,12 @@ const ForumCard = ({ post, isHome = false }) => {
     return (
 
         <div>
-            <div style={{
+            <div 
+             className="bg-white p-4 rounded-lg shadow-md  md:text-left"
+                
+            style={{
                 padding: "15px",
-                borderTop: "0px solid #E2725B",
-                borderBottom: "1px solid #E2725B",
-
+                borderBottom: "2px solid #E2725B",
             }}>
 
                 <div style={{ display: 'flex', alignItems: 'center', fontSize: '10px' }}>
@@ -29,22 +30,22 @@ const ForumCard = ({ post, isHome = false }) => {
                 <NavLink
                     to={`/viewForum/${post.id}`}
                 >
-                <h3
-                    style={{ color: "#3F826D", fontWeight: "bolder", fontSize: "15px" }}
-                >{post.title}</h3>
-            </NavLink>
+                    <h3
+                        style={{ color: "#3F826D", fontWeight: "bolder", fontSize: "15px" }}
+                    >{post.title}</h3>
+                </NavLink>
 
-            <div
-                style={{ marginTop: "5px", fontSize: "10px" }}
+                <div
+                    style={{ marginTop: "5px", fontSize: "10px" }}
 
-            >comments: {post.comments.length}
+                >comments: {post.comments.length}
+                </div>
+
+
+
+
+
             </div>
-
-
-
-
-
-        </div>
 
 
 

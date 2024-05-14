@@ -33,7 +33,7 @@ const Hero = () => {
                     <NavLink
                         style={{
                             color: "#FFFFFF",
-                            backgroundColor: "#3F826D",
+                            backgroundColor: "#E2725B",
                             fontWeight: "bold",
                             padding: "10px",
                             borderRadius: "10px",
@@ -46,7 +46,7 @@ const Hero = () => {
                     <button
                         style={{
                             color: "#FFFFFF",
-                            backgroundColor: "#3F826D",
+                            backgroundColor: "#E2725B",
                             fontWeight: "bold",
                             padding: "10px",
                             borderRadius: "10px",
@@ -68,13 +68,14 @@ const Hero = () => {
                         }}>
                         <input type="text" name="" id="" placeholder="Search post (author, title)"
                             style={{
-                                width: '200px', border: "3px solid #3F826D",
+                                width: '200px', 
+                                border: "3px solid #E2725B",
                                 fontWeight: "bold",
                                 padding: "5px"
                             }} />
                         <button type="submit" style={{
                             color: "#FFFFFF",
-                            backgroundColor: "#3F826D",
+                            backgroundColor: "#E2725B",
                             fontWeight: "bold",
                             borderColor: "#E2725B",
                             

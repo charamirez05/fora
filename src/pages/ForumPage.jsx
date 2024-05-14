@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext';
 import ForumCommentCard from '../components/ForumCommentCard';
 import { toast } from 'react-toastify';
+import CommentModal from '../components/CommentModal';
 
 
 
@@ -14,6 +15,12 @@ const ForumPage = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const rateForum = () => {
 
@@ -51,6 +58,10 @@ const ForumPage = () => {
 
   }
 
+  const addComment = () => {
+    navigate(`/addComment/${id}`)
+  }
+
 
   useEffect(() => {
     getForumByID(id);
@@ -72,7 +83,7 @@ const ForumPage = () => {
           to={`/viewForums/${forum.topic}`}
           className="text-indigo-500 hover:text-indigo-600 flex items-center"
         >
-          <FaArrowLeft className='mr-2' style={{ color: "#3F826D" }} />
+          <FaArrowLeft className='mr-2' style={{ color: "#E2725B" }} />
           <h1 style={{ color: "#3F826D", fontWeight: "bold" }} > Back to Forum Listings</h1>
         </Link>
       </div>
@@ -100,7 +111,9 @@ const ForumPage = () => {
               by {forum.author}</p>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+          <div
+            style={{ borderBottom: "2px solid #E2725B", }}
+            className="bg-white p-6 rounded-lg shadow-md mt-6">
 
             <p className="mb-4">
               {forum.content}
@@ -109,7 +122,7 @@ const ForumPage = () => {
           </div>
           <div style={{ display: "flex", position: 'absolute', bottom: 0, left: 50 }}>
 
-            <p className="mb-4" style={{ fontWeight: "bold" }}>{forum.stars} Stars</p>
+            <p className="mb-4" style={{ fontWeight: "bold", color:"#E2725B",  fontSize: "20px", }}>{forum.stars} Stars</p>
           </div>
           <div style={{ display: "flex", position: 'absolute', bottom: -3, right: 50 }}>
 
@@ -135,9 +148,12 @@ const ForumPage = () => {
                 fontWeight: "bold",
                 fontSize: "20px",
                 color: "#E2725B"
-              }}>
+              }}
+              onClick={openModal}>
               Add a Comment
             </button>
+            {isModalOpen && <CommentModal closeModal={closeModal} forum={forum} />}
+
             <button className="mb-4"
               style={{
 
@@ -163,25 +179,42 @@ const ForumPage = () => {
 
 
 
-      <div
+      <div style={{
+        marginTop: "30px",
+
+      }}
 
       >
-        {forum &&  forum.comments && forum.comments.length !== 0 ? (
+        <h1
+          style={{
+            paddingLeft: "115px",
+            fontSize: "25px",
+            fontWeight: 'bold',
+            color: "#3F826D"
+
+          }}
+        > Comments </h1>
+        {forum && forum.comments && forum.comments.length !== 0 ? (
           forum.comments.map((comment) => (
 
-            <ForumCommentCard comment={comment} />
+            <ForumCommentCard key={comment.id} comment={comment} />
           ))
         ) : (
           <div
             className="p-6 rounded-lg shadow-md text-center md:text-left"
-            style={{ position: "relative", paddingBottom: "50px", paddingLeft: "100px" }}
+            style={{
+              position: "relative",
+              paddingBottom: "50px",
+              paddingLeft: "100px",
+              backgroundColor: "rgba(209, 250, 229, 0.3)",
+            }}
           >
             <h1 style={{ fontSize: "20px" }}> No Comments Yet. </h1>
           </div>
 
         )
         }
-       
+
       </div>
 
 
