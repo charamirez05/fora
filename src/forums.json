@@ -309,6 +309,16 @@
       "comments": [],
       "stars": 0,
       "topic": "math"
+    },
+    {
+      "author": "buddy",
+      "title": "test deployed",
+      "content": "this is deployed na",
+      "date": "2024-05-14T02:03:51.933Z",
+      "comments": [],
+      "stars": 1,
+      "topic": "math",
+      "id": "edfc"
     }
   ]
 }

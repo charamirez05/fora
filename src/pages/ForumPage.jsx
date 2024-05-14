@@ -54,7 +54,7 @@ const ForumPage = () => {
 
   useEffect(() => {
     getForumByID(id);
-  }, []);
+  }, [rateForum]);
 
 
 
