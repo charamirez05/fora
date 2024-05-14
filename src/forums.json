@@ -23,28 +23,9 @@
           "date": "5/20/2023"
         }
       ],
-      "stars": 7,
+      "stars": 8,
       "topic": "general",
       "id": "3"
-    },
-    {
-      "id": "4",
-      "author": "Dorothée",
-      "title": "Multi-layered",
-      "content": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-      "date": "3/18/2023",
-      "comments": [
-        {
-          "content": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-          "date": "6/29/2023"
-        },
-        {
-          "content": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-          "date": "2/14/2024"
-        }
-      ],
-      "stars": 122,
-      "topic": "general"
     },
     {
       "author": "Thérèse",
@@ -309,16 +290,6 @@
       "comments": [],
       "stars": 0,
       "topic": "math"
-    },
-    {
-      "author": "buddy",
-      "title": "test deployed",
-      "content": "this is deployed na",
-      "date": "2024-05-14T02:03:51.933Z",
-      "comments": [],
-      "stars": 1,
-      "topic": "math",
-      "id": "edfc"
     }
   ]
 }
