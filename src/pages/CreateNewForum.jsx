@@ -25,12 +25,7 @@ const CreateNewForum = ({ addJobSubmit }) => {
             title,
             content,
             date: new Date(),
-            comments: [
-                {
-                    content: "",
-                    date: ""
-                }
-            ],
+            comments: [],
             stars: 0,
             topic
         }

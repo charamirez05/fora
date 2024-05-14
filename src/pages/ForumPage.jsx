@@ -32,13 +32,13 @@ const ForumPage = () => {
 
     toast.success("Forum rated successfully!");
 
-    console.log("ha")
+
   }
 
 
   useEffect(() => {
     getForumByID(id);
-
+    console.log(forum.comments)
   }, [ratePost]);
 
 
@@ -149,11 +149,20 @@ const ForumPage = () => {
       <div
 
       >
-        {
+        {forum.comments.length !== 0 ? (
           forum.comments.map((comment) => (
 
             <ForumCommentCard comment={comment} />
           ))
+        ) : (
+          <div
+          className="p-6 rounded-lg shadow-md text-center md:text-left"
+          style={{ position: "relative", paddingBottom: "50px", paddingLeft: "100px" }}
+        >
+            <h1 style={{fontSize: "20px"}}> No Comments Yet. </h1>
+          </div>
+
+        )
         }
       </div>
 

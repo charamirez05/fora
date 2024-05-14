@@ -162,7 +162,6 @@
       "topic": "general"
     },
     {
-      "id": "7",
       "author": "Inès",
       "title": "synergy",
       "content": "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
@@ -189,18 +188,19 @@
           "date": "11/9/2023"
         }
       ],
-      "stars": 111,
-      "topic": "popculture"
+      "stars": 112,
+      "topic": "popculture",
+      "id": "7"
     },
     {
-      "id": "8",
       "author": "Michèle",
       "title": "Cross-platform",
       "content": "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
       "date": "7/29/2023",
       "comments": [],
-      "stars": 30,
-      "topic": "popculture"
+      "stars": 31,
+      "topic": "popculture",
+      "id": "8"
     },
     {
       "id": "9",
@@ -290,12 +290,7 @@
       "title": "forum 125",
       "content": "this is sample forum 3",
       "date": "2024-05-13T09:12:28.186Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "Full-Time"
     },
@@ -305,12 +300,7 @@
       "title": "forum 126",
       "content": "sample idk",
       "date": "2024-05-13T09:13:28.414Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "Full-Time"
     },
@@ -320,12 +310,7 @@
       "title": "forum 126",
       "content": "sample 6?",
       "date": "2024-05-13T09:13:59.738Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "popculture"
     },
@@ -335,12 +320,7 @@
       "title": "forum 127",
       "content": "test foroum 7",
       "date": "2024-05-13T09:17:24.238Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "Full-Time"
     },
@@ -350,12 +330,7 @@
       "title": "forum 128",
       "content": "testssttsts",
       "date": "2024-05-13T09:18:10.701Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "Full-Time"
     },
@@ -365,12 +340,7 @@
       "title": "forum 128",
       "content": "1223",
       "date": "2024-05-13T09:19:27.003Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "Full-Time"
     },
@@ -380,12 +350,7 @@
       "title": "forum 128",
       "content": "affsd",
       "date": "2024-05-13T09:20:23.026Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "General"
     },
@@ -395,12 +360,7 @@
       "title": "forum 129",
       "content": "sasddsfdf",
       "date": "2024-05-13T09:21:19.759Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "General"
     },
@@ -410,12 +370,7 @@
       "title": "forum 234",
       "content": "najshausqa",
       "date": "2024-05-13T09:23:55.856Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "math"
     },
@@ -425,12 +380,7 @@
       "title": "forum 2126",
       "content": "xsdwqewqe",
       "date": "2024-05-13T09:24:11.456Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "General"
     },
@@ -440,12 +390,7 @@
       "title": "forum 678",
       "content": "cxds",
       "date": "2024-05-13T09:25:22.600Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
       "stars": 0,
       "topic": "general"
     },
@@ -455,12 +400,17 @@
       "title": "forum 098",
       "content": "sawsqe",
       "date": "2024-05-13T09:27:02.991Z",
-      "comments": [
-        {
-          "content": "",
-          "date": ""
-        }
-      ],
+      "comments": [],
+      "stars": 0,
+      "topic": "math"
+    },
+    {
+      "id": "e8c5",
+      "author": "kibs",
+      "title": "test comments",
+      "content": "testing sa comments",
+      "date": "2024-05-14T01:28:16.759Z",
+      "comments": [],
       "stars": 0,
       "topic": "math"
     }
