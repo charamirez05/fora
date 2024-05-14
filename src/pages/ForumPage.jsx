@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowLeft, FaMapMarker, FaStar } from 'react-icons/fa'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext';
 import ForumCommentCard from '../components/ForumCommentCard';
 import { toast } from 'react-toastify';
@@ -9,13 +9,13 @@ import { toast } from 'react-toastify';
 
 const ForumPage = () => {
 
-  const { forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum, updatePostStar } = useForum();
+  const { forum, getForumByID, updateForumStar, removeForum } = useForum();
 
   const { id } = useParams();
 
+  const navigate = useNavigate();
 
-
-  const ratePost = () => {
+  const rateForum = () => {
 
     const updatedForum = {
       author: forum.author,
@@ -28,9 +28,25 @@ const ForumPage = () => {
     }
 
 
-    updatePostStar(updatedForum, id);
+    updateForumStar(updatedForum, id);
 
     toast.success("Forum rated successfully!");
+
+
+  }
+
+  const deleteForum = () => {
+
+    const confirm = window.confirm('Are you sure you want to delete this forum?')
+
+    if (!confirm)
+      return;
+
+    removeForum(id);
+
+    toast.success("Forum deleted successfully!");
+
+    navigate(`/viewForums/${forum.topic}`)
 
 
   }
@@ -39,7 +55,7 @@ const ForumPage = () => {
   useEffect(() => {
     getForumByID(id);
     console.log(forum.comments)
-  }, [ratePost]);
+  }, [rateForum, deleteForum]);
 
 
 
@@ -107,7 +123,7 @@ const ForumPage = () => {
                 fontSize: "20px",
                 color: "#E2725B"
               }}
-              onClick={ratePost}
+              onClick={rateForum}
             >
               Rate
             </button>
@@ -130,7 +146,9 @@ const ForumPage = () => {
                 fontWeight: "bold",
                 fontSize: "20px",
                 color: "#E2725B"
-              }}>
+              }}
+              onClick={deleteForum}
+            >
               Delete
             </button>
           </div>
@@ -156,10 +174,10 @@ const ForumPage = () => {
           ))
         ) : (
           <div
-          className="p-6 rounded-lg shadow-md text-center md:text-left"
-          style={{ position: "relative", paddingBottom: "50px", paddingLeft: "100px" }}
-        >
-            <h1 style={{fontSize: "20px"}}> No Comments Yet. </h1>
+            className="p-6 rounded-lg shadow-md text-center md:text-left"
+            style={{ position: "relative", paddingBottom: "50px", paddingLeft: "100px" }}
+          >
+            <h1 style={{ fontSize: "20px" }}> No Comments Yet. </h1>
           </div>
 
         )

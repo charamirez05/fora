@@ -102,7 +102,7 @@ export function ForumProvider({ children }) {
 
 
 
-    const updatePostStar = async (updatedPost, forumId) => {
+    const updateForumStar = async (updatedPost, forumId) => {
         const res = await fetch(`/api/forums/${forumId}`, {
             method: 'PUT',
             headers: {
@@ -114,10 +114,18 @@ export function ForumProvider({ children }) {
         return;
     }
 
+    const removeForum = async (forumId) => {
+        const res = await fetch(`/api/forums/${forumId}`, {
+            method: 'DELETE',  
+        });
+
+        return;
+    }
+
 
 
     return (
-        <ForumContext.Provider value={{ forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum, updatePostStar}}>
+        <ForumContext.Provider value={{ forums, forum, generalForum, mathForum, popCultureForum, fetchForums, getForumByID, setForumTopics, createNewForum, updateForumStar, removeForum}}>
 
             {children}
 

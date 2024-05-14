@@ -1,80 +1,6 @@
 {
   "forums": [
     {
-      "author": "Jú",
-      "title": "solution-oriented",
-      "content": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-      "date": "4/21/2024",
-      "comments": [
-        {
-          "content": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-          "date": "1/19/2024"
-        },
-        {
-          "content": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-          "date": "5/14/2023"
-        },
-        {
-          "content": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-          "date": "5/12/2023"
-        }
-      ],
-      "stars": 44,
-      "topic": "general",
-      "id": "1"
-    },
-    {
-      "id": "2",
-      "author": "Michèle",
-      "title": "3rd generation",
-      "content": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-      "date": "1/18/2024",
-      "comments": [
-        {
-          "content": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-          "date": "11/8/2023"
-        },
-        {
-          "content": "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-          "date": "9/6/2023"
-        },
-        {
-          "content": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-          "date": "3/18/2024"
-        },
-        {
-          "content": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-          "date": "6/16/2023"
-        },
-        {
-          "content": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-          "date": "3/14/2024"
-        },
-        {
-          "content": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-          "date": "6/24/2023"
-        },
-        {
-          "content": "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-          "date": "2/10/2024"
-        },
-        {
-          "content": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.",
-          "date": "6/22/2023"
-        },
-        {
-          "content": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-          "date": "1/29/2024"
-        },
-        {
-          "content": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-          "date": "6/28/2023"
-        }
-      ],
-      "stars": 169,
-      "topic": "math"
-    },
-    {
       "author": "Bénédicte",
       "title": "Versatile",
       "content": "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
@@ -97,7 +23,7 @@
           "date": "5/20/2023"
         }
       ],
-      "stars": 6,
+      "stars": 7,
       "topic": "general",
       "id": "3"
     },
@@ -305,16 +231,6 @@
       "topic": "Full-Time"
     },
     {
-      "id": "2bbb",
-      "author": "chacha",
-      "title": "forum 126",
-      "content": "sample 6?",
-      "date": "2024-05-13T09:13:59.738Z",
-      "comments": [],
-      "stars": 0,
-      "topic": "popculture"
-    },
-    {
       "id": "3667",
       "author": "chacha",
       "title": "forum 127",
@@ -383,26 +299,6 @@
       "comments": [],
       "stars": 0,
       "topic": "General"
-    },
-    {
-      "id": "2755",
-      "author": "chacha",
-      "title": "forum 678",
-      "content": "cxds",
-      "date": "2024-05-13T09:25:22.600Z",
-      "comments": [],
-      "stars": 0,
-      "topic": "general"
-    },
-    {
-      "id": "0432",
-      "author": "chacha",
-      "title": "forum 098",
-      "content": "sawsqe",
-      "date": "2024-05-13T09:27:02.991Z",
-      "comments": [],
-      "stars": 0,
-      "topic": "math"
     },
     {
       "id": "e8c5",
