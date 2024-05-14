@@ -6,10 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'https://fora-backend.onrender.com/',
+      '/forums': {
+        target: 'https://fora-backend.onrender.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/forums/, '')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
