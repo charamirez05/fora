@@ -23,9 +23,9 @@ const ForumLayout = (isHome = false) => {
   return (
     <>
       <ForumsListing isHome={isHome} forum={generalForum} forumTopic={"general" } />
-      <ForumsListing isHome={isHome} forum={mathForum} forumTopic={"Math"} />
+      {/* <ForumsListing isHome={isHome} forum={mathForum} forumTopic={"Math"} />
       <ForumsListing isHome={isHome} forum={popCultureForum} forumTopic={"PopCulture"} />
-
+ */}
     </>
   )
 }

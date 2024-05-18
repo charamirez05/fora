@@ -1,33 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import ForumCard from './ForumCard'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaArrowLeft } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import ForumCard from "./ForumCard";
+import { Link, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { Box, Button, Stack, Tab, Typography } from "@mui/material";
+import { useForum } from "../contexts/ForumContext";
 
+const ForumsListing = ({ isHome = false, forumTopic }) => {
+  const {
+    forums,
+    generalForum,
+    mathForum,
+    popCultureForum,
+    fetchForums,
+    setForumTopics,
+  } = useForum();
 
-const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
+  useEffect(() => {
+    fetchForums();
+    setForumTopics(isHome);
+  }, [forums]);
+  const navigate = useNavigate();
 
+  const onViewForum = (forumTopic) => {
+    navigate(`/viewForums/${forumTopic}`);
+  };
 
-    const navigate = useNavigate();
+  const [value, setValue] = useState("math");
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-    const onViewForum = (forumTopic) => {
+  return (
 
-        navigate(`/viewForums/${forumTopic}`);
-
-    }
-
-
-
-
-
-    return (
-
-        
-        
-        <div style={{
-            backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
-
-        }}>
+    <Box sx={{backgroundColor: "rgba(209, 250, 229, 0.3)", paddingTop: "100px"}}
+      >
             <div className="container m-auto py-4 max-w-8xl ">
                 <div className=" bg-white px-6 py-8 mb-6 shadow-md rounded-md border m-4 md:m-0  ">
 
@@ -76,33 +84,14 @@ const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
 
 
 
-                                {isHome ? (
-                                    <button
-                                        style={{
-                                            color: "#FFFFFF",
-                                            backgroundColor: "#E2725B",
-                                            fontWeight: "bold",
-                                            padding: "3px",
-                                            borderRadius: "10px",
-                                            width: "fit-content"
-
-                                        }}
-                                        onClick={() => onViewForum(forumTopic)}>
-
-
-                                        View All
-                                    </button>
-                                ) : (
-                                    <> </>
-                                )}
 
                             </div>
 
 
                         </div>
 
-
-                        <div
+                       
+                         <div
                             className="rounded-xl shadow-md relative bg-white p-4 rounded-lg shadow-md md:text-left"
 
 
@@ -115,24 +104,22 @@ const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
                                 gap: "15px" // gap-6
                             }}
                         >
-                            {
-                                forum.map((post) => (
+                             {
+                                generalForum.map((post) => (
                                     <ForumCard key={post.id} post={post} isHome={isHome} />
                                 ))
-                            }
-                        </div>
+                            } 
+                        </div> 
 
 
 
                     </div >
                 </div >
             </div>
-        </div >
+     
+    </Box>
+   
+  );
+};
 
-
-
-
-    )
-}
-
-export default ForumsListing
+export default ForumsListing;
