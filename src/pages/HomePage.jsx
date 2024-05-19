@@ -53,12 +53,13 @@ const HomePage = ({ isHome }) => {
                   fontWeight: "bold",
                   textTransform: "none", // Your custom hex color
                 },
+                "& .MuiTabs-indicator": {
+                  backgroundColor: "#E2725B", // Your custom hex color
+                },
                 "& .Mui-selected": {
                   color: "#E2725B", // Custom hex color for selected tab
                 },
-                "& .MuiTabs-indicator": {
-                  backgroundColor: "#ff5733", // Your custom hex color
-                },
+               
               }}
             >
               <Tab label="General Forum" value="general" />
@@ -92,6 +93,11 @@ const HomePage = ({ isHome }) => {
                 fontWeight: "bold",
                 padding: "10px",
                 borderRadius: "10px",
+                height: '40px',
+                padding: '15px',
+                "&:hover": {
+                  bgcolor: "#FF725B",
+                },
                 
               }}
               onClick={() => onViewForum(value)}

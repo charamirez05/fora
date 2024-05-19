@@ -22,8 +22,8 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar >
-        <Toolbar sx={{ bgcolor: "#3F826D"}} >
+      <AppBar>
+        <Toolbar sx={{ bgcolor: "#3F826D" }}>
           <Box component="div" sx={{ flexGrow: 1 }}>
             <NavLink to="/">
               <Stack direction="row">
@@ -48,33 +48,45 @@ const Navbar = () => {
           <Stack direction="row" spacing={2}>
             <NavLink to="/createNewForum">
               <Button
-                variant="text"
+                variant="contained"
                 sx={{
                   color: "#FFFFFF",
                   backgroundColor: "#E2725B",
                   fontWeight: "bold",
                   borderRadius: "10px",
                   textTransform: "none",
+                  height: '40px',
+                  padding: '15px',
+                  "&:hover": {
+                    bgcolor: "#FF725B",
+                  },
                 }}
                 startIcon={<Add />}
               >
-                Add Post
+                Create Forum
               </Button>
             </NavLink>
-
-            <Button
-              variant="contained"
-              sx={{
-                color: "#FFFFFF",
-                bgcolor: "#E2725B",
-                fontWeight: "bold",
-                borderRadius: "10px",
-                textTransform: "none",
-              }}
-              onClick={() => onViewForum("All")}
-            >
-              View All Forums
-            </Button>
+            
+          
+              <Button
+                variant="contained"
+                sx={{
+                  color: "#FFFFFF",
+                  backgroundColor: "#E2725B",
+                  fontWeight: "bold",
+                  borderRadius: "10px",
+                  textTransform: "none",
+                  height: '40px',
+                  padding: '15px',
+                  "&:hover": {
+                    bgcolor: "#FF725B",
+                  },
+                }}
+                onClick={() => onViewForum("All")}
+              >
+                View All Forums
+              </Button>
+          
 
             <Stack direction="row">
               <form>
