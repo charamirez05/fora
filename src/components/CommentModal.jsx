@@ -28,7 +28,7 @@ const CommentModal = ({ closeModal, forum }) => {
     },
     onSuccess: (data) => {
       /*  queryClient.setQueryData(["forums", data.id], data); */
-      queryClient.invalidateQueries(["forums"], { exact: true });
+      queryClient.invalidateQueries(["forums"]);
       
     },
   });
