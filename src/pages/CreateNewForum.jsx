@@ -1,153 +1,213 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useForum } from '../contexts/ForumContext';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Controller, useForm } from "react-hook-form";
+import { createForum } from "../services/forums";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { v4 as uuidv4 } from "uuid";
 
-const CreateNewForum = ({ addJobSubmit }) => {
+const CreateNewForum = () => {
+  const form = useForm({
+    defaultValues: {
+      author: "",
+      title: "",
+      content: "",
+      topic: "general",
+    },
+    mode: "onSubmit",
+  });
 
-    const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-    const { forums, createNewForum } = useForum();
+  const navigate = useNavigate();
 
+  const { register, handleSubmit, formState, control } = form;
 
-    const [title, setTitle] = useState('');
-    const [topic, setTopic] = useState('general');
-    const [author, setAuthor] = useState('');
-    const [content, setContent] = useState('');
+  const { errors } = formState;
 
+  const [topic, setTopic] = useState("general");
 
+  const createForumMutation = useMutation({
+    mutationFn: createForum,
+    onSuccess: (data) => {
+      /*  queryClient.setQueryData(["forums", data.id], data); */
+      queryClient.invalidateQueries(["forums"], { exact: true });
+    },
+  });
 
-    const submitForm = (e) => {
-        e.preventDefault();
+  const submitForm = (data) => {
+    createForumMutation.mutate({
+      id: uuidv4().slice(0, 4),
+      author: data.author,
+      title: data.title,
+      content: data.content,
+      date: new Date(),
+      comments: [],
+      stars: 0,
+      topic: data.topic,
+    });
 
-        const newForum = {
-            author,
-            title,
-            content,
-            date: new Date(),
-            comments: [],
-            stars: 0,
-            topic
-        }
+    toast.success("Forum created successfully!");
 
-        createNewForum(newForum);
+    return navigate("/ViewForums/All");
+  };
 
-        toast.success("Forum created successfully!");
+  const handleTopicChange = (event) => {
+    setTopic(event.target.value);
+  };
 
-        return navigate('/ViewForums/All');
-    }
-    return (
-        <div style={{ backgroundColor: "rgba(209, 250, 229, 0.3)", }} // bg-green-50
+  return (
+    <Box
+      sx={{ backgroundColor: "rgba(209, 250, 229, 0.3)", paddingTop: "100px" }}
+    >
+      <Box
+        sx={{
+          margin: "auto",
+          maxWidth: "1000px", // max-w-2xl (32rem * 16px = 512px)
+          paddingTop: "96px", // py-24 (24 * 4px = 96px)
+          paddingBottom: "96px", // py-24 (24 * 4px = 96px)
+        }}
+      >
+        <Box
+          sx={{
+            backgroundColor: "white", // bg-white
+            padding: "30px", // px-6 (6 * 4px = 24px)
+            margin: "16px", // m-4 (4 * 4px = 16px)
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
+            borderRadius: "10px", // rounded-md (8px border radius)
+          }}
         >
-            <div className="container m-auto max-w-2xl py-24">
-                <div
-                    className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
+          <Typography
+            variant="h4"
+            sx={{ color: "#3F826D", textAlign: "center", fontWeight: "bold" }}
+            gutterBottom
+          >
+            Create New Forum
+          </Typography>
+
+          <form onSubmit={handleSubmit(submitForm)} noValidate>
+            <Stack spacing={2}>
+              <TextField
+                label="Author"
+                type="text"
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: "#3F826D",
+                  },
+                }}
+                {...register("author", {
+                  required: {
+                    value: true,
+                    message: "Author is required",
+                  },
+                })}
+                error={!!errors.author}
+                helperText={errors.author?.message}
+              />
+              <FormControl>
+                <InputLabel
+                  id="topic-label"
+                  sx={{
+                    color: '#3F826D'
+                  }}
                 >
-                    <form onSubmit={submitForm}>
-                        <h2
-                            style={{ color: "#3F826D" }}
-                            className="text-3xl text-center font-semibold mb-6">Add Job</h2>
+                  Topic
+                </InputLabel>
+                <Controller
+                  name="topic"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: "Topic is required. Please choose one." }}
+                  render={({ field }) => (
+                    <Select
+                      labelId="topic-label"
+                      id="topic"
+                      value={topic}
+                      label="Topic"
+                      onChange={handleTopicChange}
+                    >
+                      <MenuItem value="general">General</MenuItem>
+                      <MenuItem value="math">Math</MenuItem>
+                      <MenuItem value="popculture">PopCulture</MenuItem>
+                    </Select>
+                  )}
+                  error={!!errors.topic}
+                  helperText={errors.topic?.message}
+                />
+              </FormControl>
+              <TextField
+                label="Title"
+                type="text"
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: "#3F826D", 
+                  },
+                }}
+                {...register("title", {
+                  required: {
+                    value: true,
+                    message: "Title is required",
+                  },
+                })}
+                error={!!errors.title}
+                helperText={errors.title?.message}
+              />
+              <TextField
+                label="Content"
+                multiline
+                rows={8}
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: "#3F826D", 
+                  },
+                }}
+                {...register("content", {
+                  required: {
+                    value: true,
+                    message: "Content is required",
+                  },
+                })}
+                error={!!errors.content}
+                helperText={errors.content?.message}
+              />
 
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{
+                  fontSize: "17px",
+                  backgroundColor: "#E2725B",
+                  borderRadius: "9999px", // rounded-full
+                  fontWeight: "bold", // font-bold
+                  width: "100%", // w-full
+                  boxShadow: "0 0 0 3px rgba(66, 153, 225, 0.5)", // focus:shadow-outline
+                  outline: "none", // focus:outline-none
+                  textTransform: "none",
+                  "&:hover": {
+                    bgcolor: "#FF725B",
+                  },
+                }}
+                disabled={createForumMutation.isLoading}
+              >
+                Create New Forum
+              </Button>
+            </Stack>
+          </form>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
-                        <div className="mb-4">
-                            <label
-                                style={{ color: "#3F826D" }}
-                                className="block text-gray-700 font-bold mb-2"
-                            >Author</label
-                            >
-                            <input
-                                type="text"
-                                id="title"
-                                name="title"
-                                className="border rounded w-full py-2 px-3 mb-2"
-
-                                required
-                                value={author}
-                                onChange={(e) => setAuthor(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label
-                                style={{ color: "#3F826D" }}
-                                htmlFor="type" className="block text-gray-700 font-bold mb-2"
-                            >Topic</label
-                            >
-                            <select
-                                id="type"
-                                name="type"
-                                className="border rounded w-full py-2 px-3"
-                                required
-                                value={topic}
-                                onChange={(e) => setTopic(e.target.value)}
-                            >
-                                <option value="general">General</option>
-                                <option value="math">Math</option>
-                                <option value="popculture">Pop Culture</option>
-
-                            </select>
-                        </div>
-
-
-
-                        <div className="mb-4">
-                            <label
-                                style={{ color: "#3F826D" }}
-                                className="block text-gray-700 font-bold mb-2"
-                            >Title</label
-                            >
-                            <input
-                                type="text"
-                                id="title"
-                                name="title"
-                                className="border rounded w-full py-2 px-3 mb-2"
-                                placeholder="eg. Beautiful Apartment In Miami"
-                                required
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label
-                                style={{ color: "#3F826D" }}
-                                htmlFor="content"
-                                className="block text-gray-700 font-bold mb-2"
-                            >Content</label
-                            >
-                            <textarea
-                                id="content"
-                                name="content"
-                                className="border rounded w-full py-2 px-3"
-                                rows="4"
-                                placeholder="Add discussion content of chosen topic/title"
-                                value={content}
-                                onChange={(e) => setContent(e.target.value)}
-                            ></textarea>
-                        </div>
-
-                        <div>
-                            <button
-                                style={{
-                                    backgroundColor: "#3F826D",
-                                    color: "white", // text-white
-                                    fontWeight: "bold", // font-bold
-                                    padding: "0.5rem 1rem", // py-2 px-4
-                                    borderRadius: "9999px", // rounded-full
-                                    width: "100%", // w-full
-                                    outline: "none", // focus:outline-none
-                                    boxShadow: "0 0 0 3px rgba(66, 153, 225, 0.5)", // focus:shadow-outline
-                                }}
-
-                                type="submit"
-                            >
-                                Create New Forum
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default CreateNewForum
+export default CreateNewForum;

@@ -22,7 +22,7 @@ const ForumCommentCard = ({ comment }) => {
 
                     <div
 
-                        className=" text-gray-500"> &nbsp;{comment.date.split("T")[0]}
+                        className=" text-gray-500">  &nbsp;{comment.date.split("T")[0]}
 
                     </div>
                 </div>

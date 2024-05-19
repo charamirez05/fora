@@ -14,16 +14,7 @@ export function getAllForumsByTopic(forumtopic) {
 
 export function createForum(forum) {
   return axios
-    .post("https://fora-backend.onrender.com/forums", {
-        id: forum.id,
-        author: forum.author,
-        title: forum.title,
-        content: forum.content,
-        date: forum.date,
-        comments: forum.comments,
-        topic: forum.topic,
-        stars: forum.stars
-    })
+    .post("https://fora-backend.onrender.com/forums", forum)
     .then((res) => res.data);
 }
 
@@ -36,12 +27,13 @@ export function updateForumRating(forumId, updatedForum) {
 export function addForumComment(forumId, updatedForum) {
   return axios
     .put(`https://fora-backend.onrender.com/forums/${forumId}`, updatedForum)
-    .then((res) => res.data);
+    .then((res) => {
+      res.data;
+    });
 }
 
-
 export function deleteForum(forumId) {
-    return axios
-      .delete(`https://fora-backend.onrender.com/forums/${forumId}`)
-      .then((res) => res.data);
-  }
+  return axios
+    .delete(`https://fora-backend.onrender.com/forums/${forumId}`)
+    .then((res) => res.data);
+}
