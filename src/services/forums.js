@@ -6,9 +6,15 @@ export function getAllForums() {
     .then((res) => res.data);
 }
 
-export function getAllForumsByTopic(forumTopic) {
+export function getAllForumsByTopic(topic) {
   return axios
-    .get(`https://fora-backend.onrender.com/forums?topic=${forumTopic}`)
+    .get(`https://fora-backend.onrender.com/forums?topic=${topic}`)
+    .then((res) => res.data);
+}
+
+export function getForumById(id) {
+  return axios
+    .get(`https://fora-backend.onrender.com/forums/${id}`)
     .then((res) => res.data);
 }
 
@@ -18,22 +24,22 @@ export function createForum(forum) {
     .then((res) => res.data);
 }
 
-export function updateForumRating(forumId, updatedForum) {
+export function rateForum(id, updatedForum) {
   return axios
-    .put(`https://fora-backend.onrender.com/forums/${forumId}`, updatedForum)
+    .put(`https://fora-backend.onrender.com/forums/${id}`, updatedForum)
     .then((res) => res.data);
 }
 
-export function addForumComment(forumId, updatedForum) {
+export function addForumComment(id, updatedForum) {
   return axios
-    .put(`https://fora-backend.onrender.com/forums/${forumId}`, updatedForum)
+    .put(`https://fora-backend.onrender.com/forums/${id}`, updatedForum)
     .then((res) => {
       res.data;
     });
 }
 
-export function deleteForum(forumId) {
+export function deleteForum(id) {
   return axios
-    .delete(`https://fora-backend.onrender.com/forums/${forumId}`)
+    .delete(`https://fora-backend.onrender.com/forums/${id}`)
     .then((res) => res.data);
 }

@@ -1,52 +1,44 @@
-import React from 'react'
+import { Box, Stack, Typography } from "@mui/material";
+import React from "react";
 
 const ForumCommentCard = ({ comment }) => {
-    return (
-        <div
-            style={{ padding: "20px", paddingTop: "5px", paddingBottom: "5px" }}
-            className="container m-auto "
+  return (
+    <Box sx={{ padding: "5px 5px 5px 20px" }}>
+      <Box
+        sx={{
+          backgroundColor: "white", // bg-white
+          padding: "20px", // px-6 (6 * 4px = 24px)
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
+          borderRadius: "10px", // rounded-md (8px border radius)
+        }}
+      >
+        <Stack direction="row" spacing={2}>
+          <Typography
+            variant="h6"
+            sx={{ fontStyle: "italic", fontWeight: "bold", color: "#E2725B" }}
+          >
+            {comment.author}
+          </Typography>
+
+          <Typography variant="h6" sx={{ color: "grey" }}>
+            {comment.date.split("T")[0]}
+          </Typography>
+        </Stack>
+
+        <Box
+           sx={{
+            borderBottom: "2px solid #E2725B",
+            margin: "auto",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            padding: "20px",
+          }}
+         
         >
-            <div
+           <Typography variant="body1">{comment.content}</Typography>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
-                className="bg-white p-4 rounded-lg shadow-md text-center md:text-left"
-            >
-
-                <div style={{ display: "flex" }}>
-                    <div
-                        style={{ fontWeight: 'bold', color: "#E2725B" }}
-                    >
-
-                        {comment.author}
-
-                    </div>
-
-                    <div
-
-                        className=" text-gray-500">  &nbsp;{comment.date.split("T")[0]}
-
-                    </div>
-                </div>
-
-
-                <div
-                    style={{ borderBottom: "2px solid #E2725B", }}
-                    className="bg-white p-6 rounded-lg shadow-md mt-4">
-
-                    <p>
-                        {comment.content}
-                    </p>
-                </div>
-
-            </div>
-
-
-
-
-
-
-
-        </div>
-    )
-}
-
-export default ForumCommentCard
+export default ForumCommentCard;

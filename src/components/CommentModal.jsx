@@ -23,13 +23,11 @@ const CommentModal = ({ closeModal, forum }) => {
   const { errors } = formState;
 
   const createCommentMutation = useMutation({
-    mutationFn: ({ forumId, updatedForum }) => {
-      addForumComment(forumId, updatedForum);
+    mutationFn: ({ id, updatedForum }) => {
+      addForumComment(id, updatedForum);
     },
     onSuccess: (data) => {
-      /*  queryClient.setQueryData(["forums", data.id], data); */
-      queryClient.invalidateQueries(["forums"]);
-      
+      //   queryClient.invalidateQueries(["forums"]);
     },
   });
 
@@ -43,7 +41,7 @@ const CommentModal = ({ closeModal, forum }) => {
 
     forum.comments.push(newComment);
 
-    createCommentMutation.mutate({ forumId: forum.id, updatedForum: forum });
+    createCommentMutation.mutate({ id: forum.id, updatedForum: forum });
 
     toast.success("Forum created successfully!");
   };
@@ -75,7 +73,7 @@ const CommentModal = ({ closeModal, forum }) => {
             <Stack
               direction="row"
               spacing={2}
-              sx={{ justifyContent: "center", paddingBottom: '20px' }}
+              sx={{ justifyContent: "center", paddingBottom: "20px" }}
             >
               <Typography
                 variant="h4"
@@ -88,7 +86,7 @@ const CommentModal = ({ closeModal, forum }) => {
               </Typography>
               <CloseIcon
                 sx={{
-                  position: 'relative',
+                  position: "relative",
                   left: 250,
                   alignContent: "left",
                 }}

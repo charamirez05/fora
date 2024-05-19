@@ -1,202 +1,234 @@
-import React, { useEffect, useState } from "react";
-import { FaArrowLeft, FaMapMarker, FaStar } from "react-icons/fa";
+import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useForum } from "../contexts/ForumContext";
 import ForumCommentCard from "../components/ForumCommentCard";
 import { toast } from "react-toastify";
 import CommentModal from "../components/CommentModal";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getForumById, rateForum, deleteForum } from "../services/forums";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const ForumPage = () => {
-  const { forum, getForumByID, updateForumStar, removeForum } = useForum();
-
   const { id } = useParams();
-
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const rateForum = () => {
-    const updatedForum = {
-      author: forum.author,
-      title: forum.title,
-      content: forum.content,
-      date: forum.date,
-      comments: forum.comments,
-      stars: forum.stars + 1,
-      topic: forum.topic,
-    };
+  const forumQuery = useQuery({
+    queryKey: ["forums", id],
+    queryFn: () => getForumById(id),
+    refetchInterval: 3000,
+  });
 
-    updateForumStar(updatedForum, id);
+  const rateForumMutation = useMutation({
+    mutationFn: ({ id, updatedForum }) => {
+      rateForum(id, updatedForum);
+    },
+  });
+
+  const deleteForumMutation = useMutation({
+    mutationFn: ({ id }) => {
+      deleteForum(id);
+    },
+  });
+
+  const rateForumFunction = () => {
+    const updatedForum = {
+      author: forumQuery.data.author,
+      title: forumQuery.data.title,
+      content: forumQuery.data.content,
+      date: forumQuery.data.date,
+      comments: forumQuery.data.comments,
+      stars: forumQuery.data.stars + 1,
+      topic: forumQuery.data.topic,
+    };
+   
+    rateForumMutation.mutate({ id: id, updatedForum: updatedForum });
 
     toast.success("Forum rated successfully!");
   };
 
-  const deleteForum = () => {
-    const confirm = window.confirm(
+  const deleteForumFunction = () => {
+      const confirm = window.confirm(
       "Are you sure you want to delete this forum?"
     );
 
     if (!confirm) return;
 
-    removeForum(id);
+     deleteForumMutation.mutate({id: id}); 
+    console.log("test delete")
 
     toast.success("Forum deleted successfully!");
 
-    navigate(`/viewForums/${forum.topic}`);
+     navigate(`/viewForums/${forumQuery.data.topic}`);  
   };
-
-  const addComment = () => {
-    navigate(`/addComment/${id}`);
-  };
-
-  useEffect(() => {
-    getForumByID(id);
-  }, [rateForum]);
 
   return (
-    <div
-      style={{
-        backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
+    <Box
+      sx={{
+        backgroundColor: "rgba(209, 250, 229, 0.3)",
+        padding: "100px 50px 50px 50px",
       }}
     >
-      <div className="container m-auto py-6 px-6">
+      <Box sx={{ paddingLeft: "25px" }}>
         <Link
-          to={`/viewForums/${forum.topic}`}
+          to={`/viewForums/${forumQuery.data && forumQuery.data.topic}`}
           className="text-indigo-500 hover:text-indigo-600 flex items-center"
         >
-          <FaArrowLeft className="mr-2" style={{ color: "#E2725B" }} />
-          <h1 style={{ color: "#3F826D", fontWeight: "bold" }}>
-            {" "}
+          <ArrowBackIcon style={{ color: "#E2725B", marginRight: "2px" }} />
+          <Typography
+            variant="h6"
+            sx={{ color: "#3F826D", fontWeight: "bold" }}
+          >
             Back to Forum Listings
-          </h1>
+          </Typography>
         </Link>
-      </div>
+      </Box>
 
-      <div className="container m-auto ">
-        <div
-          className="bg-white p-6 rounded-lg shadow-md text-center md:text-left"
-          style={{ position: "relative", paddingBottom: "50px" }}
+      <Box
+        sx={{
+          backgroundColor: "white", // bg-white
+          padding: "30px", // px-6 (6 * 4px = 24px)
+          margin: "20px", // m-4 (4 * 4px = 16px)
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
+          borderRadius: "10px", // rounded-md (8px border radius)
+        }}
+      >
+        <Typography variant="subtitle1" sx={{ marginBottom: "5px" }}>
+          {forumQuery.data && forumQuery.data.date}
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{ marginBottom: "5px", color: "#3F826D", fontWeight: "bold" }}
         >
-          <div className="text-gray-500 mb-4">{forum.date}</div>
-          <h1 style={{ color: "#3F826D" }} className="text-3xl font-bold mb-4">
-            {forum.title}
-          </h1>
-          <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
-            <p style={{ color: "#E2725B" }}>by {forum.author}</p>
-          </div>
+          {forumQuery.data && forumQuery.data.title}
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          sx={{ marginBottom: "5px", fontStyle: "italic" }}
+        >
+          by {forumQuery.data && forumQuery.data.author}
+        </Typography>
 
-          <div
-            style={{ borderBottom: "2px solid #E2725B" }}
-            className="bg-white p-6 rounded-lg shadow-md mt-6"
-          >
-            <p className="mb-4">{forum.content}</p>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              position: "absolute",
-              bottom: 0,
-              left: 50,
+        <Box
+          sx={{
+            borderBottom: "2px solid #E2725B",
+            margin: "auto",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            padding: "30px",
+          }}
+        >
+          <Typography variant="h6" sx={{ marginBottom: "5px" }}>
+            {forumQuery.data && forumQuery.data.content}{" "}
+          </Typography>
+        </Box>
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ paddingTop: "20px", width: "100%" }}
+        >
+          <Typography
+            variant="subtitle1"
+            sx={{
+              fontWeight: "bold",
+              color: "#E2725B",
+              paddingTop: "8px",
+              fontSize: "20px",
             }}
           >
-            <p
-              className="mb-4"
-              style={{ fontWeight: "bold", color: "#E2725B", fontSize: "20px" }}
-            >
-              {forum.stars} Stars
-            </p>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              position: "absolute",
-              bottom: -3,
-              right: 50,
-            }}
-          >
-            <button
-              className="mb-4"
+            {forumQuery.data && forumQuery.data.stars} Stars
+          </Typography>
+          <Box>
+            <Button
+              variant="text"
               style={{
                 paddingRight: "30px",
                 fontWeight: "bold",
-                fontSize: "20px",
+                textTransform: "none",
                 color: "#E2725B",
+                fontSize: "20px",
               }}
-              onClick={rateForum}
+              onClick={rateForumFunction}
             >
               Rate
-            </button>
+            </Button>
 
-            <button
-              className="mb-4"
+            <Button
+              variant="text"
               style={{
                 paddingRight: "30px",
                 fontWeight: "bold",
-                fontSize: "20px",
+                textTransform: "none",
                 color: "#E2725B",
+                fontSize: "20px",
               }}
               onClick={openModal}
             >
               Add a Comment
-            </button>
+            </Button>
             {isModalOpen && (
-              <CommentModal closeModal={closeModal} forum={forum} />
+              <CommentModal
+                closeModal={closeModal}
+                forum={forumQuery.data && forumQuery.data}
+              />
             )}
 
-            <button
-              className="mb-4"
+            <Button
+              variant="text"
               style={{
                 paddingRight: "30px",
                 fontWeight: "bold",
-                fontSize: "20px",
+                textTransform: "none",
                 color: "#E2725B",
+                fontSize: "20px",
               }}
-              onClick={deleteForum}
+              onClick={deleteForumFunction}
             >
               Delete
-            </button>
-          </div>
-        </div>
-      </div>
+            </Button>
+          </Box>
+        </Stack>
+      </Box>
 
-      <div
-        style={{
-          marginTop: "30px",
-        }}
-      >
-        <h1
-          style={{
-            paddingLeft: "115px",
-            fontSize: "25px",
-            fontWeight: "bold",
-            color: "#3F826D",
-          }}
-        >
-          {" "}
-          Comments{" "}
-        </h1>
-        {forum && forum.comments && forum.comments.length !== 0 ? (
-          forum.comments.map((comment) => (
-            <ForumCommentCard key={comment.id} comment={comment} />
-          ))
+      <Box sx={{ paddingLeft: "25px" }}>
+        {forumQuery.data &&
+        forumQuery.data.comments &&
+        forumQuery.data.comments.length !== 0 ? (
+          <Box>
+            <Typography
+              variant="h4"
+              style={{
+                fontWeight: "bold",
+                color: "#3F826D",
+                marginBottom: "5px",
+              }}
+            >
+              Comments
+            </Typography>
+            {forumQuery.data.comments.map((comment) => (
+              <ForumCommentCard key={comment.id} comment={comment} />
+            ))}
+          </Box>
         ) : (
-          <div
-            className="p-6 rounded-lg shadow-md text-center md:text-left"
-            style={{
-              position: "relative",
-              paddingBottom: "50px",
-              paddingLeft: "100px",
-              backgroundColor: "rgba(209, 250, 229, 0.3)",
-            }}
-          >
-            <h1 style={{ fontSize: "20px" }}> No Comments Yet. </h1>
-          </div>
+          <Box sx={{ paddingLeft: "25px" }}>
+            <Typography
+              variant="h4"
+              style={{
+                fontWeight: "bold",
+                color: "#3F826D",
+                marginBottom: "5px",
+              }}
+            >
+              No Comments Yet.
+            </Typography>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
