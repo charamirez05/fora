@@ -6,9 +6,9 @@ export function getAllForums() {
     .then((res) => res.data);
 }
 
-export function getAllForumsByTopic(forumtopic) {
+export function getAllForumsByTopic(forumTopic) {
   return axios
-    .get(`https://fora-backend.onrender.com/forums?topic=${forumtopic}`)
+    .get(`https://fora-backend.onrender.com/forums?topic=${forumTopic}`)
     .then((res) => res.data);
 }
 

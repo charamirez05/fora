@@ -1,53 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import ForumsListing from '../components/ForumsListing'
-import { useForum } from '../contexts/ForumContext'
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import ForumsListing from "../components/ForumsListing";
+import { useForum } from "../contexts/ForumContext";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getAllForums, getAllForumsByTopic } from "../services/forums";
 
 const ForumsPage = () => {
+  const { topic } = useParams();
 
+  const forumQuery = useQuery({
+    queryKey: ["forums", topic],
+    queryFn: () =>
+      topic === "All" ? getAllForums() : getAllForumsByTopic(topic),
+  });
 
-  const { forumTopic } = useParams();
-
-  const { forums, generalForum, mathForum, popCultureForum, fetchForums, setForumTopics } = useForum();
-
-
-  const [forumObject, setForumObject] = useState([]);
-
-
-
-  const formToUseFunction = () => {
-    
-    let newForumObject;
-
-    if (forumTopic === 'All' || forumTopic === 'all' ) {
-      newForumObject = forums;
-    } else if (forumTopic === 'General' || forumTopic === 'general') {
-      newForumObject = generalForum;
-    } else if (forumTopic === 'Math' || forumTopic === 'math') {
-      newForumObject = mathForum;
-    } else if (forumTopic === 'PopCulture' || forumTopic === 'popculture') {
-      newForumObject = popCultureForum;
-    }
-
-    setForumObject(newForumObject);
-  };
-
-  useEffect(() => {
-
-    fetchForums();
-    setForumTopics();
-
-
-    formToUseFunction();
-
-  }, [forums, ]);
-
-
+ 
   return (
+    <ForumsListing
+      forums={forumQuery.data}
+      topic={topic.charAt(0).toUpperCase() + topic.slice(1)}
+    />
+  );
+};
 
-    <ForumsListing isHome={false} forum={forumObject} forumTopic={forumTopic} />
-
-  )
-}
-
-export default ForumsPage
+export default ForumsPage;

@@ -16,8 +16,8 @@ import Add from "@mui/icons-material/Add";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const onViewForum = (forumTopic) => {
-    navigate(`/viewForums/${forumTopic}`);
+  const onViewForum = () => {
+    navigate(`/viewForums/All`);
   };
 
   return (
@@ -82,7 +82,7 @@ const Navbar = () => {
                     bgcolor: "#FF725B",
                   },
                 }}
-                onClick={() => onViewForum("All")}
+                onClick={onViewForum}
               >
                 View All Forums
               </Button>

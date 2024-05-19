@@ -5,120 +5,48 @@ import { FaArrowLeft } from "react-icons/fa";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Button, Stack, Tab, Typography } from "@mui/material";
 import { useForum } from "../contexts/ForumContext";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const ForumsListing = ({ isHome = false, forumTopic }) => {
-  const {
-    forums,
-    generalForum,
-    mathForum,
-    popCultureForum,
-    fetchForums,
-    setForumTopics,
-  } = useForum();
-
-  useEffect(() => {
-    fetchForums();
-    setForumTopics(isHome);
-  }, [forums]);
-  const navigate = useNavigate();
-
-  const onViewForum = (forumTopic) => {
-    navigate(`/viewForums/${forumTopic}`);
-  };
-
-  const [value, setValue] = useState("math");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+const ForumsListing = ({ forums, topic }) => {
 
   return (
-
-    <Box sx={{backgroundColor: "rgba(209, 250, 229, 0.3)", paddingTop: "100px"}}
+    <Box
+      sx={{ backgroundColor: "rgba(209, 250, 229, 0.3)", paddingTop: "100px" }}
+    >
+      <Box
+        sx={{
+          backgroundColor: "white", // bg-white
+          padding: "30px", // px-6 (6 * 4px = 24px)
+          margin: "20px", // m-4 (4 * 4px = 16px)
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
+          borderRadius: "10px", // rounded-md (8px border radius)
+        }}
       >
-            <div className="container m-auto py-4 max-w-8xl ">
-                <div className=" bg-white px-6 py-8 mb-6 shadow-md rounded-md border m-4 md:m-0  ">
+        <Box style={{ display: "flex" }}>
+          <Link
+            to={"/"}
+            className="text-indigo-500 hover:text-indigo-600 flex items-center"
+          >
+            <ArrowBackIcon className="mr-2" style={{ color: "#E2725B" }} />
+            <Typography
+              variant="h6"
+              style={{
+                color: "#3F826D",
+                fontWeight: "bold",
+              }}
+            >
+              {topic} Forums
+            </Typography>
+          </Link>
+        </Box>
 
-                    <div >
-
-                        <div style={{ display: "flex", alignItems: "center", marginBottom: "0px" }}>
-
-                            <div
-                                style={{ display: "flex", }}
-                            >
-                                {!isHome ? (
-                                    <Link
-                                        to={forumTopic === 'All' ? '/' : '/viewForums/All'}
-                                        className="text-indigo-500 hover:text-indigo-600 flex items-center"
-                                    >
-                                        <FaArrowLeft
-                                            className='mr-2'
-                                            style={{ color: '#E2725B' }} />
-                                        <h2
-                                            style={{
-                                                color: "#3F826D",
-                                                fontSize: "20px",
-                                                marginLeft: "5px",
-                                                fontWeight: "bold",
-                                                marginRight: "10px"
-                                            }}
-                                        >
-                                            {forumTopic} Forums
-
-                                        </h2>
-                                    </Link>
-                                ) : (
-                                    <h2
-                                        style={{
-                                            color: "#3F826D",
-                                            fontSize: "20px",
-                                            marginLeft: "5px",
-                                            fontWeight: "bold",
-                                            marginRight: "10px"
-                                        }}
-                                    >
-
-                                        {forumTopic} Forums
-                                    </h2>
-                                )}
-
-
-
-
-                            </div>
-
-
-                        </div>
-
-                       
-                         <div
-                            className="rounded-xl shadow-md relative bg-white p-4 rounded-lg shadow-md md:text-left"
-
-
-                            style={{
-                                backgroundColor: "#FFFFFF",
-
-
-                                display: "grid", // grid
-                                gridTemplateColumns: "1fr", // grid-cols-1
-                                gap: "15px" // gap-6
-                            }}
-                        >
-                             {
-                                generalForum.map((post) => (
-                                    <ForumCard key={post.id} post={post} isHome={isHome} />
-                                ))
-                            } 
-                        </div> 
-
-
-
-                    </div >
-                </div >
-            </div>
-     
+        <Box sx={{ margin: "10px" }}>
+          {forums && forums.map((forum) => (
+            <ForumCard key={forum.id} forum={forum} topic={topic}/>
+          ))}
+        </Box>
+      </Box>
     </Box>
-   
   );
 };
 
