@@ -42,7 +42,7 @@ const CreateNewForum = () => {
     mutationFn: createForum,
     onSuccess: (data) => {
       /*  queryClient.setQueryData(["forums", data.id], data); */
-      queryClient.invalidateQueries(["forums"], { exact: true });
+      queryClient.invalidateQueries(["forums"]);
     },
   });
 
