@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Button, Stack, Tab, Typography } from "@mui/material";
-import { useForum } from "../contexts/ForumContext";
 import ForumCard from "../components/ForumCard";
-import { useQuery } from "@tanstack/react-query";
-import { getAllForumsByTopic } from "../services/forums";
-const HomePage = ({ isHome }) => {
+
+import useForums from "../services/useForums";
+import { HomeTabPanel } from "../components/HomeTabPanel";
+import { ForumLoading } from "../components/ForumLoading";
+
+const HomePage = () => {
   const navigate = useNavigate();
 
   const [topic, setTopic] = useState("general");
 
-  const forumQuery = useQuery({
-    queryKey: ["forums", topic],
-    queryFn: () => getAllForumsByTopic(topic),
-  });
+  const { data, isLoading } = useForums(topic);
 
   const handleChange = (event, newValue) => {
     setTopic(newValue);
@@ -67,39 +66,20 @@ const HomePage = ({ isHome }) => {
 
               <Tab label="Pop Culture" value="popculture" />
             </TabList>
+            <ForumLoading loading={isLoading} />
           </Box>
+          <HomeTabPanel topic={"general"} forums={data} />
 
-          <TabPanel value="general">
-            {forumQuery.data &&
-              forumQuery.data
-                .slice(0, 4)
-                .map((forum) => (
-                  <ForumCard key={forum.id} forum={forum} isHome={isHome} />
-                ))}
-          </TabPanel>
-          <TabPanel value="math">
-            {forumQuery.data &&
-              forumQuery.data
-                .slice(0, 5)
-                .map((forum) => (
-                  <ForumCard key={forum.id} forum={forum} isHome={isHome} />
-                ))}
-          </TabPanel>
-          <TabPanel value="popculture">
-            {forumQuery.data &&
-              forumQuery.data
-                .slice(0, 5)
-                .map((forum) => (
-                  <ForumCard key={forum.id} forum={forum} isHome={isHome} />
-                ))}
-          </TabPanel>
+          <HomeTabPanel topic={"math"} forums={data} />
+
+          <HomeTabPanel topic={"popculture"} forums={data} />
 
           <Box display="flex" justifyContent="center">
             <Button
               variant="text"
               sx={{
                 color: "#E2725B",
-                fontSize: '18px',
+                fontSize: "18px",
                 fontWeight: "bold",
                 padding: "10px",
                 borderRadius: "10px",
