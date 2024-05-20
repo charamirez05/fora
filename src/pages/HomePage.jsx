@@ -57,7 +57,7 @@ const HomePage = ({ isHome }) => {
                   color: "#E2725B", // Custom hex color for selected tab
                 },
                 "& .MuiTabs-indicator": {
-                  backgroundColor: "#E2725B", // Your custom hex color
+                  backgroundColor: "orange", // Your custom hex color
                 },
               }}
             >
@@ -72,7 +72,7 @@ const HomePage = ({ isHome }) => {
           <TabPanel value="general">
             {forumQuery.data &&
               forumQuery.data
-                .slice(0, 5)
+                .slice(0, 4)
                 .map((forum) => (
                   <ForumCard key={forum.id} forum={forum} isHome={isHome} />
                 ))}
@@ -99,7 +99,7 @@ const HomePage = ({ isHome }) => {
               variant="text"
               sx={{
                 color: "#E2725B",
-
+                fontSize: '18px',
                 fontWeight: "bold",
                 padding: "10px",
                 borderRadius: "10px",
