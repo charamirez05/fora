@@ -1,64 +1,78 @@
-import React from 'react'
-import { FaMapMarker } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom';
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import { FaMapMarker } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
+const ForumCard = ({ forum, topic }) => {
+  return (
+    <Box sx={{ padding: "0px 0px 10px 0" }}>
+      <Box
+        sx={{
+          padding: "15px",
+          borderBottom: "2px solid #E2725B",
+          borderRadius: "8px", // rounded-lg (lg corresponds to 8px border radius)
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
+        }}
+      >
+        <Box style={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ marginBottom: "5px", fontSize: { xs: "10px", md: "15px" } }}
+          >
+            {forum.date}
+          </Typography>
 
-const ForumCard = ({ post, isHome = false }) => {
+          {topic === "All" ? (
+            <Typography
+              variant="subtitle2"
+              sx={{
+                fontSize: { xs: "10px", md: "15px" },
+                marginLeft: "auto",
+                paddingLeft: "10px",
+                fontWeight: "bold",
+                color: "#3F826D",
+              }}
+            >
+              {forum.topic}
+            </Typography>
+          ) : (
+            <></>
+          )}
+        </Box>
 
-    return (
+        <Typography
+          variant="subtitle1"
+          sx={{
+            marginBottom: "5px",
+            fontStyle: "italic",
+            fontSize: { xs: "15px", md: "20px" },
+          }}
+        >
+          {forum.author}
+        </Typography>
+        <NavLink to={`/forum/${forum.id}`}>
+          <Typography
+            variant="h5"
+            sx={{
+              marginBottom: "5px",
+              color: "#3F826D",
+              fontSize: { xs: "20px", md: "25px" },
+              fontWeight: "bold",
+            }}
+          >
+            {forum.title}
+          </Typography>
+        </NavLink>
 
-        <div>
-            <div 
-             className="bg-white p-4 rounded-lg shadow-md  md:text-left"
-                
-            style={{
-                padding: "15px",
-                borderBottom: "2px solid #E2725B",
-            }}>
+        <Typography
+          variant="subtitle2"
+          sx={{ fontSize: { xs: "10px", md: "15px" } }}
+        >
+          comments: {forum.comments.length}
+        </Typography>
+      </Box>
+    </Box>
+  );
+};
 
-                <div style={{ display: 'flex', alignItems: 'center', fontSize: '10px' }}>
-                    <p>{post.date}</p>
-                    {!isHome && <p style={{ marginLeft: 'auto', paddingLeft: '10px', fontWeight: "bold", color: "#3F826D" }}>{post.topic}</p>}
-                </div>
-
-
-
-
-                <div
-                    style={{ marginBottom: "5px", fontSize: "10px" }}
-                >{post.author}</div>
-                <NavLink
-                    to={`/viewForum/${post.id}`}
-                >
-                    <h3
-                        style={{ color: "#3F826D", fontWeight: "bolder", fontSize: "15px" }}
-                    >{post.title}</h3>
-                </NavLink>
-
-                <div
-                    style={{ marginTop: "5px", fontSize: "10px" }}
-
-                >comments: {post.comments.length}
-                </div>
-
-
-
-
-
-            </div>
-
-
-
-
-
-        </div >
-
-
-
-
-
-
-    )
-}
-
-export default ForumCard
+export default ForumCard;

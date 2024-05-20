@@ -1,136 +1,86 @@
-import React, { useEffect, useState } from 'react'
-import ForumCard from './ForumCard'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaArrowLeft } from 'react-icons/fa';
+import React, { useState } from "react";
 
+import ForumCard from "../components/ForumCard";
 
-const ForumsListing = ({ isHome = false, forum, forumTopic = "" }) => {
+import { Box, Pagination, Typography } from "@mui/material";
 
+import { ForumLoading } from "../components/ForumLoading";
 
-    const navigate = useNavigate();
+export const ForumsListing = ({ forums, loading }) => {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5;
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedForums = forums && forums.slice(startIndex, endIndex);
+  const pageCount = Math.ceil(forums && forums.length / itemsPerPage);
 
-    const onViewForum = (forumTopic) => {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "white", // bg-white
+        padding: { xs: "5px", md: "20px" },
 
-        navigate(`/viewForums/${forumTopic}`);
+        margin: { xs: "20px", md: "20px" },
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
+        borderRadius: "10px", // rounded-md (8px border radius)
+      }}
+    >
+      <ForumLoading loading={loading} />
 
-    }
-
-
-
-
-
-    return (
-
-        <div style={{
-            backgroundColor: "rgba(209, 250, 229, 0.3)", // bg-green-50
-
-        }}>
-            <div className="container m-auto max-w-8xl ">
-                <div className=" bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0  ">
-
-                    <div >
-
-                        <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-
-                            <div
-                                style={{ display: "flex", }}
-                            >
-                                {!isHome ? (
-                                    <Link
-                                        to={forumTopic === 'All' ? '/' : '/viewForums/All'}
-                                        className="text-indigo-500 hover:text-indigo-600 flex items-center"
-                                    >
-                                        <FaArrowLeft
-                                            className='mr-2'
-                                            style={{ color: '#E2725B' }} />
-                                        <h2
-                                            style={{
-                                                color: "#3F826D",
-                                                fontSize: "20px",
-                                                marginLeft: "5px",
-                                                fontWeight: "bold",
-                                                marginRight: "10px"
-                                            }}
-                                        >
-                                            {forumTopic} Forums
-
-                                        </h2>
-                                    </Link>
-                                ) : (
-                                    <h2
-                                        style={{
-                                            color: "#3F826D",
-                                            fontSize: "20px",
-                                            marginLeft: "5px",
-                                            fontWeight: "bold",
-                                            marginRight: "10px"
-                                        }}
-                                    >
-
-                                        {forumTopic} Forums
-                                    </h2>
-                                )}
-
-
-
-                                {isHome ? (
-                                    <button
-                                        style={{
-                                            color: "#FFFFFF",
-                                            backgroundColor: "#E2725B",
-                                            fontWeight: "bold",
-                                            padding: "3px",
-                                            borderRadius: "10px",
-                                            width: "fit-content"
-
-                                        }}
-                                        onClick={() => onViewForum(forumTopic)}>
-
-
-                                        View All
-                                    </button>
-                                ) : (
-                                    <> </>
-                                )}
-
-                            </div>
-
-
-                        </div>
-
-
-                        <div
-                            className="rounded-xl shadow-md relative bg-white p-4 rounded-lg shadow-md md:text-left"
-
-
-                            style={{
-                                backgroundColor: "#FFFFFF",
-
-
-                                display: "grid", // grid
-                                gridTemplateColumns: "1fr", // grid-cols-1
-                                gap: "15px" // gap-6
-                            }}
-                        >
-                            {
-                                forum.map((post) => (
-                                    <ForumCard key={post.id} post={post} isHome={isHome} />
-                                ))
-                            }
-                        </div>
-
-
-
-                    </div >
-                </div >
-            </div>
-        </div >
-
-
-
-
-    )
-}
-
-export default ForumsListing
+      {forums && !loading &&  forums.length !== 0 ? (
+        <Box
+          sx={{
+            margin: "10px",
+            padding: { xs: "5px", md: "0px" }, // px-6 (6 * 4px = 24px)
+          }}
+        >
+          {paginatedForums &&
+            paginatedForums.map((forum) => (
+              <ForumCard key={forum.id} forum={forum} topic={forum.topic} />
+            ))}
+          <Box
+            display="flex"
+            justifyContent="center"
+            sx={{ marginTop: { xs: "10px", md: "20px" } }}
+          >
+            <Pagination
+              count={pageCount}
+              page={page}
+              onChange={handleChange}
+              sx={{
+                "& .Mui-selected": {
+                  color: "white",
+                  backgroundColor: "#E2725B",
+                },
+              }}
+            />
+          </Box>
+        </Box>
+      ) : (
+        <Box
+          display="flex"
+          justifyContent="center"
+          sx={{
+            
+            padding: "50px ", // px-6 (6 * 4px = 24px)
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{
+              fontSize: { xs: "25px", md: "30px" },
+              color: "#3F826D",
+              fontWeight: "bold",
+            }}
+          >
+            No forums found.
+          </Typography>
+        </Box>
+      )}
+    </Box>
+  );
+};
