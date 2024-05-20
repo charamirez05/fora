@@ -13,11 +13,22 @@ As of May 14, 2024, the starting features are:
 
 Plans for to-be-implemented features:
 - Filter forums by category (e.g. author, date, title)
-- Search forum/post by category (e.g. author, date, title)
+- Search forum/post by category (e.g. author, date, ~~title~~)
 
 
 
-> Backend JSON Server is separately deployed in Render.
+
+
+Updates as of May 22, 2024
+- Search forum by title
+- Implemented react-hook-form for creating a new forum and adding new comment
+- Implemented react-query for API calls and query invalidations after mutations
+- Converted HTML components to MUI Components
+- Mobile Responsiveness
+- Stopped the use useContext 
+
+
+> Backend JSON Server is in a separate git repository and deployed in Render.
 
 
 >Frontend is deployed in Render.
@@ -25,8 +36,3 @@ Plans for to-be-implemented features:
 
 >The backend used in the master branch is the *deployed* JSON server
 
-Updates as of May 21, 2024
-- Implemented react-hook-form for creating a new forum and adding new comment
-- Implemented react-query for API calls and query invalidations after mutations
-- Converted HTML components to MUI Components
-- Stopped the use useContext 
