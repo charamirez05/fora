@@ -24,3 +24,9 @@ Plans for to-be-implemented features:
 
 
 >The backend used in the master branch is the *deployed* JSON server
+
+Updates as of May 21, 2024
+- Implemented react-hook-form for creating a new forum and adding new comment
+- Implemented react-query for API calls and query invalidations after mutations
+- Converted HTML components to MUI Components
+- Stopped the use useContext 
