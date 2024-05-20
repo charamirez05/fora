@@ -21,14 +21,14 @@ const HomePage = ({ isHome }) => {
   };
 
   const onViewAllClick = () => {
-    navigate(`/viewForums/${topic}`);
+    navigate(`/${topic}`);
   };
 
   return (
     <Box
       sx={{
         backgroundColor: "rgba(209, 250, 229, 0.3)",
-        paddingTop: "100px",
+        padding: "120px 50px 50px 50px",
       }}
     >
       <Box

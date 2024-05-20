@@ -62,19 +62,19 @@ const ForumPage = () => {
 
     toast.success("Forum deleted successfully!");
 
-     navigate(`/viewForums/${forumQuery.data.topic}`);  
+     navigate(`/${forumQuery.data.topic}`);  
   };
 
   return (
     <Box
       sx={{
         backgroundColor: "rgba(209, 250, 229, 0.3)",
-        padding: "100px 50px 50px 50px",
+        padding: "120px 50px 50px 50px",
       }}
     >
       <Box sx={{ paddingLeft: "25px" }}>
         <Link
-          to={`/viewForums/${forumQuery.data && forumQuery.data.topic}`}
+          to={`/${forumQuery.data && forumQuery.data.topic}`}
           className="text-indigo-500 hover:text-indigo-600 flex items-center"
         >
           <ArrowBackIcon style={{ color: "#E2725B", marginRight: "2px" }} />

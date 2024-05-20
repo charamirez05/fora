@@ -42,7 +42,7 @@ const ForumCard = ({ forum, topic }) => {
         <Typography variant="subtitle1" sx={{ marginBottom: "5px", fontStyle: 'italic' }}>
           {forum.author}
         </Typography>
-        <NavLink to={`/viewForum/${forum.id}`}>
+        <NavLink to={`/forum/${forum.id}`}>
           <Typography
             variant="h5"
             sx={{ marginBottom: "5px", color: "#3F826D", fontWeight: "bold" }}

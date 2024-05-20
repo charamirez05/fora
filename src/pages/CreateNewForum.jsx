@@ -59,7 +59,7 @@ const CreateNewForum = () => {
 
     toast.success("Forum created successfully!");
 
-    return navigate("/ViewForums/All");
+    return navigate("/All");
   };
 
   const handleTopicChange = (event) => {

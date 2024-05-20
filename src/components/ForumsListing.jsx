@@ -28,7 +28,7 @@ const ForumsListing = ({ forums, topic }) => {
 
   return (
     <Box
-      sx={{ backgroundColor: "rgba(209, 250, 229, 0.3)", paddingTop: "100px" }}
+      sx={{ backgroundColor: "rgba(209, 250, 229, 0.3)", padding: "120px 50px 50px 50px" }}
     >
       <Box style={{ display: "flex", paddingLeft: "30px" }}>
         <Link

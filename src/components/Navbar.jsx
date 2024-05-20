@@ -17,7 +17,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const onViewForum = () => {
-    navigate(`/viewForums/All`);
+    navigate(`/All`);
   };
 
   return (
