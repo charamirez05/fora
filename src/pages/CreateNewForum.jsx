@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { createForum } from "../services/forums";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -41,7 +41,6 @@ const CreateNewForum = () => {
   const createForumMutation = useMutation({
     mutationFn: createForum,
     onSuccess: (data) => {
-      /*  queryClient.setQueryData(["forums", data.id], data); */
       queryClient.invalidateQueries(["forums"]);
     },
   });
@@ -55,7 +54,7 @@ const CreateNewForum = () => {
       date: new Date(),
       comments: [],
       stars: 0,
-      topic: data.topic,
+      topic: topic,
     });
 
     toast.success("Forum created successfully!");
@@ -74,9 +73,8 @@ const CreateNewForum = () => {
       <Box
         sx={{
           margin: "auto",
-          maxWidth: "1000px", // max-w-2xl (32rem * 16px = 512px)
-          paddingTop: "96px", // py-24 (24 * 4px = 96px)
-          paddingBottom: "96px", // py-24 (24 * 4px = 96px)
+          width: "75%",
+          padding: "96px",
         }}
       >
         <Box
@@ -119,39 +117,29 @@ const CreateNewForum = () => {
                 <InputLabel
                   id="topic-label"
                   sx={{
-                    color: '#3F826D'
+                    color: "#3F826D",
                   }}
                 >
                   Topic
                 </InputLabel>
-                <Controller
-                  name="topic"
-                  control={control}
-                  defaultValue=""
-                  rules={{ required: "Topic is required. Please choose one." }}
-                  render={({ field }) => (
-                    <Select
-                      labelId="topic-label"
-                      id="topic"
-                      value={topic}
-                      label="Topic"
-                      onChange={handleTopicChange}
-                    >
-                      <MenuItem value="general">General</MenuItem>
-                      <MenuItem value="math">Math</MenuItem>
-                      <MenuItem value="popculture">PopCulture</MenuItem>
-                    </Select>
-                  )}
-                  error={!!errors.topic}
-                  helperText={errors.topic?.message}
-                />
+                <Select
+                  labelId="topic-label"
+                  id="topic"
+                  value={topic}
+                  label="Topic"
+                  onChange={handleTopicChange}
+                >
+                  <MenuItem value="general">General</MenuItem>
+                  <MenuItem value="math">Math</MenuItem>
+                  <MenuItem value="popculture">PopCulture</MenuItem>
+                </Select>
               </FormControl>
               <TextField
                 label="Title"
                 type="text"
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: "#3F826D", 
+                    color: "#3F826D",
                   },
                 }}
                 {...register("title", {
@@ -169,7 +157,7 @@ const CreateNewForum = () => {
                 rows={8}
                 sx={{
                   "& .MuiInputLabel-root": {
-                    color: "#3F826D", 
+                    color: "#3F826D",
                   },
                 }}
                 {...register("content", {
@@ -191,11 +179,9 @@ const CreateNewForum = () => {
                   borderRadius: "9999px", // rounded-full
                   fontWeight: "bold", // font-bold
                   width: "100%", // w-full
-                  boxShadow: "0 0 0 3px rgba(66, 153, 225, 0.5)", // focus:shadow-outline
-                  outline: "none", // focus:outline-none
                   textTransform: "none",
                   "&:hover": {
-                    bgcolor: "#FF725B",
+                    backgroundColor: "#FF725B",
                   },
                 }}
                 disabled={createForumMutation.isLoading}
