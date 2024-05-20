@@ -7,7 +7,7 @@ const ForumCommentCard = ({ comment }) => {
       <Box
         sx={{
           backgroundColor: "white", // bg-white
-          padding: "20px", // px-6 (6 * 4px = 24px)
+          padding: "15px", // px-6 (6 * 4px = 24px)
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
           borderRadius: "10px", // rounded-md (8px border radius)
         }}
@@ -15,26 +15,40 @@ const ForumCommentCard = ({ comment }) => {
         <Stack direction="row" spacing={2}>
           <Typography
             variant="h6"
-            sx={{ fontStyle: "italic", fontWeight: "bold", color: "#E2725B" }}
+            sx={{
+              fontStyle: "italic",
+              
+              color: "#E2725B",
+              fontSize: { xs: "12px", md: "15px" },
+            }}
           >
             {comment.author}
           </Typography>
 
-          <Typography variant="h6" sx={{ color: "grey" }}>
+          <Typography
+            variant="h6"
+            sx={{ color: "grey", fontSize: { xs: "12px", md: "15px" } }}
+          >
             {comment.date.split("T")[0]}
           </Typography>
         </Stack>
 
         <Box
-           sx={{
+          sx={{
             borderBottom: "2px solid #E2725B",
             margin: "auto",
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             padding: "20px",
           }}
-         
         >
-           <Typography variant="body1">{comment.content}</Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: { xs: "12px", md: "15px" },
+            }}
+          >
+            {comment.content}
+          </Typography>
         </Box>
       </Box>
     </Box>

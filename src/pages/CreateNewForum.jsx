@@ -68,129 +68,131 @@ const CreateNewForum = () => {
 
   return (
     <Box
-      sx={{ backgroundColor: "rgba(209, 250, 229, 0.3)", paddingTop: "100px" }}
+      sx={{
+        backgroundColor: "rgba(209, 250, 229, 0.3)",
+        padding: { xs: "100px 10px 100% 10px", md: "100px 25px 100% 25px" },
+      }}
     >
       <Box
         sx={{
-          margin: "auto",
-          width: "75%",
-          padding: "96px",
+          backgroundColor: "white", // bg-white
+          padding: "30px", // px-6 (6 * 4px = 24px)
+          margin: "20px", // m-4 (4 * 4px = 16px)
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
+          borderRadius: "10px", // rounded-md (8px border radius)
         }}
       >
-        <Box
+        <Typography
+          variant="h4"
           sx={{
-            backgroundColor: "white", // bg-white
-            padding: "30px", // px-6 (6 * 4px = 24px)
-            margin: "16px", // m-4 (4 * 4px = 16px)
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
-            borderRadius: "10px", // rounded-md (8px border radius)
+            color: "#3F826D",
+            textAlign: "center",
+            fontWeight: "bold",
+            marginBottom: '15px',
+            fontSize: { xs: "25px", md: "30px" },
           }}
+          gutterBottom
         >
-          <Typography
-            variant="h4"
-            sx={{ color: "#3F826D", textAlign: "center", fontWeight: "bold" }}
-            gutterBottom
-          >
-            Create New Forum
-          </Typography>
+          Create New Forum
+        </Typography>
 
-          <form onSubmit={handleSubmit(submitForm)} noValidate>
-            <Stack spacing={2}>
-              <TextField
-                label="Author"
-                type="text"
+        <form onSubmit={handleSubmit(submitForm)} noValidate>
+          <Stack spacing={2}>
+            <TextField
+              label="Author"
+              type="text"
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: "#3F826D",
+                },
+               
+              }}
+              {...register("author", {
+                required: {
+                  value: true,
+                  message: "Author is required",
+                },
+              })}
+              error={!!errors.author}
+              helperText={errors.author?.message}
+            />
+            <FormControl>
+              <InputLabel
+                id="topic-label"
                 sx={{
-                  "& .MuiInputLabel-root": {
-                    color: "#3F826D",
-                  },
+                  color: "#3F826D",
                 }}
-                {...register("author", {
-                  required: {
-                    value: true,
-                    message: "Author is required",
-                  },
-                })}
-                error={!!errors.author}
-                helperText={errors.author?.message}
-              />
-              <FormControl>
-                <InputLabel
-                  id="topic-label"
-                  sx={{
-                    color: "#3F826D",
-                  }}
-                >
-                  Topic
-                </InputLabel>
-                <Select
-                  labelId="topic-label"
-                  id="topic"
-                  value={topic}
-                  label="Topic"
-                  onChange={handleTopicChange}
-                >
-                  <MenuItem value="general">General</MenuItem>
-                  <MenuItem value="math">Math</MenuItem>
-                  <MenuItem value="popculture">PopCulture</MenuItem>
-                </Select>
-              </FormControl>
-              <TextField
-                label="Title"
-                type="text"
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    color: "#3F826D",
-                  },
-                }}
-                {...register("title", {
-                  required: {
-                    value: true,
-                    message: "Title is required",
-                  },
-                })}
-                error={!!errors.title}
-                helperText={errors.title?.message}
-              />
-              <TextField
-                label="Content"
-                multiline
-                rows={8}
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    color: "#3F826D",
-                  },
-                }}
-                {...register("content", {
-                  required: {
-                    value: true,
-                    message: "Content is required",
-                  },
-                })}
-                error={!!errors.content}
-                helperText={errors.content?.message}
-              />
-
-              <Button
-                variant="contained"
-                type="submit"
-                sx={{
-                  fontSize: "17px",
-                  backgroundColor: "#E2725B",
-                  borderRadius: "9999px", // rounded-full
-                  fontWeight: "bold", // font-bold
-                  width: "100%", // w-full
-                  textTransform: "none",
-                  "&:hover": {
-                    backgroundColor: "#FF725B",
-                  },
-                }}
-                disabled={createForumMutation.isLoading}
               >
-                Create New Forum
-              </Button>
-            </Stack>
-          </form>
-        </Box>
+                Topic
+              </InputLabel>
+              <Select
+                labelId="topic-label"
+                id="topic"
+                value={topic}
+                label="Topic"
+                onChange={handleTopicChange}
+              >
+                <MenuItem value="general">General</MenuItem>
+                <MenuItem value="math">Math</MenuItem>
+                <MenuItem value="popculture">PopCulture</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField
+              label="Title"
+              type="text"
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: "#3F826D",
+                },
+              }}
+              {...register("title", {
+                required: {
+                  value: true,
+                  message: "Title is required",
+                },
+              })}
+              error={!!errors.title}
+              helperText={errors.title?.message}
+            />
+            <TextField
+              label="Content"
+              multiline
+              rows={8}
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: "#3F826D",
+                },
+              }}
+              {...register("content", {
+                required: {
+                  value: true,
+                  message: "Content is required",
+                },
+              })}
+              error={!!errors.content}
+              helperText={errors.content?.message}
+            />
+
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                fontSize: "17px",
+                backgroundColor: "#E2725B",
+                borderRadius: "9999px", // rounded-full
+                fontWeight: "bold", // font-bold
+                width: "100%", // w-full
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#FF725B",
+                },
+              }}
+              disabled={createForumMutation.isLoading}
+            >
+              Create New Forum
+            </Button>
+          </Stack>
+        </form>
       </Box>
     </Box>
   );

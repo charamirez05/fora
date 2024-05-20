@@ -1,10 +1,11 @@
 import React from "react";
 import ForumCard from "./ForumCard";
 import { TabPanel } from "@mui/lab";
+import { Box, Grid } from "@mui/material";
 
 export const HomeTabPanel = ({ topic, forums }) => {
   return (
-    <div>
+    <Box  sx={{margin: '-10px'}}>
       <TabPanel value={topic}>
         {forums &&
           forums
@@ -13,6 +14,6 @@ export const HomeTabPanel = ({ topic, forums }) => {
               <ForumCard key={forum.id} forum={forum} isHome={true} />
             ))}
       </TabPanel>
-    </div>
+    </Box>
   );
 };

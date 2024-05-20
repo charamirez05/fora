@@ -15,6 +15,7 @@ export const ForumLoading = ({ loading }) => {
           <Typography
             variant="h4"
             sx={{
+              fontSize: { xs: "25px", md: "30px" },
               color: "#3F826D",
               fontWeight: "bold",
             }}

@@ -7,6 +7,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getForumById, rateForum, deleteForum } from "../services/forums";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import StarIcon from "@mui/icons-material/Star";
 
 const ForumPage = () => {
   const { id } = useParams();
@@ -44,32 +45,32 @@ const ForumPage = () => {
       stars: forumQuery.data.stars + 1,
       topic: forumQuery.data.topic,
     };
-   
+
     rateForumMutation.mutate({ id: id, updatedForum: updatedForum });
 
     toast.success("Forum rated successfully!");
   };
 
   const deleteForumFunction = () => {
-      const confirm = window.confirm(
+    const confirm = window.confirm(
       "Are you sure you want to delete this forum?"
     );
 
     if (!confirm) return;
 
-     deleteForumMutation.mutate({id: id}); 
-    console.log("test delete")
+    deleteForumMutation.mutate({ id: id });
+    console.log("test delete");
 
     toast.success("Forum deleted successfully!");
 
-     navigate(`/${forumQuery.data.topic}`);  
+    navigate(`/${forumQuery.data.topic}`);
   };
 
   return (
     <Box
       sx={{
         backgroundColor: "rgba(209, 250, 229, 0.3)",
-        padding: "120px 50px 50px 50px",
+        padding: { xs: "100px 0px 50px 0px", md: "100px 25px 100px 25px" },
       }}
     >
       <Box sx={{ paddingLeft: "25px" }}>
@@ -80,7 +81,11 @@ const ForumPage = () => {
           <ArrowBackIcon style={{ color: "#E2725B", marginRight: "2px" }} />
           <Typography
             variant="h6"
-            sx={{ color: "#3F826D", fontWeight: "bold" }}
+            sx={{
+              color: "#3F826D",
+              fontWeight: "bold",
+              fontSize: { xs: "15px", md: "20px" },
+            }}
           >
             Back to Forum Listings
           </Typography>
@@ -90,24 +95,36 @@ const ForumPage = () => {
       <Box
         sx={{
           backgroundColor: "white", // bg-white
-          padding: "30px", // px-6 (6 * 4px = 24px)
+          padding: "20px 20px 10px 20px", // px-6 (6 * 4px = 24px)
           margin: "20px", // m-4 (4 * 4px = 16px)
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
           borderRadius: "10px", // rounded-md (8px border radius)
         }}
       >
-        <Typography variant="subtitle1" sx={{ marginBottom: "5px" }}>
+        <Typography
+          variant="subtitle1"
+          sx={{ marginBottom: "5px", fontSize: { xs: "15px", md: "20px" } }}
+        >
           {forumQuery.data && forumQuery.data.date}
         </Typography>
         <Typography
           variant="h4"
-          sx={{ marginBottom: "5px", color: "#3F826D", fontWeight: "bold" }}
+          sx={{
+            marginBottom: "5px",
+            color: "#3F826D",
+            fontWeight: "bold",
+            fontSize: { xs: "30px", md: "35px" },
+          }}
         >
           {forumQuery.data && forumQuery.data.title}
         </Typography>
         <Typography
           variant="subtitle1"
-          sx={{ marginBottom: "5px", fontStyle: "italic" }}
+          sx={{
+            marginBottom: "5px",
+            fontStyle: "italic",
+            fontSize: { xs: "15px", md: "20px" },
+          }}
         >
           by {forumQuery.data && forumQuery.data.author}
         </Typography>
@@ -117,11 +134,14 @@ const ForumPage = () => {
             borderBottom: "2px solid #E2725B",
             margin: "auto",
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            padding: "30px",
+            padding: "20px",
           }}
         >
-          <Typography variant="h6" sx={{ marginBottom: "5px" }}>
-            {forumQuery.data && forumQuery.data.content}{" "}
+          <Typography
+            variant="h6"
+            sx={{ marginBottom: "5px", fontSize: { xs: "15px", md: "20px" } }}
+          >
+            {forumQuery.data && forumQuery.data.content}
           </Typography>
         </Box>
         <Stack
@@ -129,28 +149,37 @@ const ForumPage = () => {
           spacing={2}
           alignItems="center"
           justifyContent="space-between"
-          sx={{ paddingTop: "20px", width: "100%" }}
+          sx={{ paddingTop: "20px",  width: '100%' }}
         >
-          <Typography
-            variant="subtitle1"
-            sx={{
-              fontWeight: "bold",
-              color: "#E2725B",
-              paddingTop: "8px",
-              fontSize: "20px",
-            }}
-          >
-            {forumQuery.data && forumQuery.data.stars} Stars
-          </Typography>
+          <Stack direction="row">
+          <StarIcon
+              sx={{
+                color: "#E2725B",
+                margin: { xs: "0 3px 8px 0", md: "3px 5px 0 0 " },
+              }}
+            />
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: "bold",
+                color: "#E2725B",
+                fontSize: { xs: "12px", md: "20px" },
+              }}
+            >
+              {forumQuery.data && forumQuery.data.stars} Stars
+            </Typography>
+           
+          </Stack>
+
           <Box>
             <Button
               variant="text"
-              style={{
-                paddingRight: "30px",
+              sx={{
+                margin: { xs: "0 -2px  10px 0", md: "0 15px 0 0px " },
                 fontWeight: "bold",
                 textTransform: "none",
                 color: "#E2725B",
-                fontSize: "20px",
+                fontSize: { xs: "12px", md: "20px" },
               }}
               onClick={rateForumFunction}
             >
@@ -159,12 +188,12 @@ const ForumPage = () => {
 
             <Button
               variant="text"
-              style={{
-                paddingRight: "30px",
+              sx={{
+                margin: { xs: "0 -2px 10px -10px", md: "0 15px 0 0px " },
                 fontWeight: "bold",
                 textTransform: "none",
                 color: "#E2725B",
-                fontSize: "20px",
+                fontSize: { xs: "12px", md: "20px" },
               }}
               onClick={openModal}
             >
@@ -179,12 +208,12 @@ const ForumPage = () => {
 
             <Button
               variant="text"
-              style={{
-                paddingRight: "30px",
+              sx={{
+                margin: { xs: "0 -2px 10px -10px", md: "0 15px 0px 0px " },
                 fontWeight: "bold",
                 textTransform: "none",
                 color: "#E2725B",
-                fontSize: "20px",
+                fontSize: { xs: "12px", md: "20px" },
               }}
               onClick={deleteForumFunction}
             >
@@ -194,17 +223,19 @@ const ForumPage = () => {
         </Stack>
       </Box>
 
-      <Box sx={{ paddingLeft: "25px" }}>
+      <Box sx={{ padding: "0 20px 0 15px" }}>
         {forumQuery.data &&
         forumQuery.data.comments &&
         forumQuery.data.comments.length !== 0 ? (
-          <Box>
+          <Box >
             <Typography
               variant="h4"
-              style={{
+              sx={{
                 fontWeight: "bold",
                 color: "#3F826D",
                 marginBottom: "5px",
+                fontSize: { xs: "20px", md: "25px" },
+                padding: "0 20px 0 15px" 
               }}
             >
               Comments

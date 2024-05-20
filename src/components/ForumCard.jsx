@@ -5,9 +5,8 @@ import { NavLink } from "react-router-dom";
 
 const ForumCard = ({ forum, topic }) => {
   return (
-    <Box sx={{ paddingBottom: "10px" }}>
+    <Box sx={{ padding: "0px 0px 10px 0" }}>
       <Box
-        className="bg-white p-4 rounded-lg shadow-md  md:text-left"
         sx={{
           padding: "15px",
           borderBottom: "2px solid #E2725B",
@@ -15,10 +14,11 @@ const ForumCard = ({ forum, topic }) => {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // shadow-md
         }}
       >
-        <Box
-          style={{ display: "flex", alignItems: "center", fontSize: "10px" }}
-        >
-          <Typography variant="subtitle2" sx={{ marginBottom: "5px" }}>
+        <Box style={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ marginBottom: "5px", fontSize: { xs: "10px", md: "15px" } }}
+          >
             {forum.date}
           </Typography>
 
@@ -26,6 +26,7 @@ const ForumCard = ({ forum, topic }) => {
             <Typography
               variant="subtitle2"
               sx={{
+                fontSize: { xs: "10px", md: "15px" },
                 marginLeft: "auto",
                 paddingLeft: "10px",
                 fontWeight: "bold",
@@ -39,19 +40,34 @@ const ForumCard = ({ forum, topic }) => {
           )}
         </Box>
 
-        <Typography variant="subtitle1" sx={{ marginBottom: "5px", fontStyle: 'italic' }}>
+        <Typography
+          variant="subtitle1"
+          sx={{
+            marginBottom: "5px",
+            fontStyle: "italic",
+            fontSize: { xs: "15px", md: "20px" },
+          }}
+        >
           {forum.author}
         </Typography>
         <NavLink to={`/forum/${forum.id}`}>
           <Typography
             variant="h5"
-            sx={{ marginBottom: "5px", color: "#3F826D", fontWeight: "bold" }}
+            sx={{
+              marginBottom: "5px",
+              color: "#3F826D",
+              fontSize: { xs: "20px", md: "25px" },
+              fontWeight: "bold",
+            }}
           >
             {forum.title}
           </Typography>
         </NavLink>
 
-        <Typography variant="subtitle2" >
+        <Typography
+          variant="subtitle2"
+          sx={{ fontSize: { xs: "10px", md: "15px" } }}
+        >
           comments: {forum.comments.length}
         </Typography>
       </Box>

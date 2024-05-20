@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/logo.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Box,
   Button,
+  Divider,
+  Drawer,
+  Grid,
   IconButton,
+  InputBase,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
   Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Add from "@mui/icons-material/Add";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import { Home, Inbox } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
+import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
+import HomeIcon from "@mui/icons-material/Home";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,151 +34,196 @@ const Navbar = () => {
   const onViewForum = () => {
     navigate(`/All`);
   };
+  const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = useState("");
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+  const handleSearchChange = (event) => {
+    setTitle(event.target.value)
+  }
+  const handleSearchClick = () => {
+    navigate(`/search/:${title}`)
+  }
 
   return (
-    <>
-      <AppBar>
-        <Toolbar sx={{ bgcolor: "#3F826D" }}>
-          <Box component="div" sx={{ flexGrow: 1 }}>
-            <NavLink to="/">
-              <Stack direction="row">
+    <AppBar>
+      <Toolbar sx={{ bgcolor: "#3F826D" }}>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleDrawer(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Drawer open={open} onClose={toggleDrawer(false)}>
+          <Box
+            sx={{ width: { xs: 300, md: 500 } }}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+          >
+            <List>
+              <ListItem
+                key={"fora"}
+                sx={{ justifyContent: "center", display: "flex" }}
+              >
                 <IconButton>
-                  <img style={{ height: "55px" }} src={logo} alt="Fora" />
+                  <img
+                    src={logo}
+                    alt="Fora"
+                    style={{
+                      height: "100px",
+                    }}
+                  />
                 </IconButton>
-                <Stack direction="column">
+
+                <Stack direction="column" sx={{ paddingTop: "15px" }}>
                   <Typography
-                    variant="h5"
-                    sx={{ fontSize: "30px", fontWeight: "bolder" }}
+                    variant="h4"
+                    sx={{
+                      color: "#3F826D",
+                      fontWeight: "bolder",
+                      fontSize: { xs: "45px", md: "65px" },
+                    }}
                   >
                     Fora
                   </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#E2725B",
+                      fontStyle: "italic",
+                      fontSize: { xs: "12px", md: "22px" },
+                    }}
+                  >
                     Express your thoughts freely and anonymously
                   </Typography>
                 </Stack>
-              </Stack>
-            </NavLink>
+              </ListItem>
+
+              <Divider />
+              <ListItem key={"home"} disablePadding>
+                <NavLink to="/">
+                  <Button
+                    variant="text"
+                    sx={{
+                      marginLeft: "15px",
+                      fontSize: { xs: "15px", md: "25px" },
+                      color: "#3F826D",
+                      "&:hover": {
+                        color: "#FF725B",
+                      },
+                      textTransform: "none",
+                    }}
+                    startIcon={<Home sx={{ color: "#E2725B" }} />}
+                  >
+                    Home
+                  </Button>
+                </NavLink>
+              </ListItem>
+              <ListItem key={"create"} disablePadding>
+                <NavLink to="/create-forum">
+                  <Button
+                    variant="text"
+                    sx={{
+                      marginLeft: "15px",
+                      fontSize: { xs: "15px", md: "25px" },
+                      color: "#3F826D",
+                      "&:hover": {
+                        color: "#FF725B",
+                      },
+                      textTransform: "none",
+                    }}
+                    startIcon={<Add sx={{ color: "#E2725B" }} />}
+                  >
+                    Create Forum
+                  </Button>
+                </NavLink>
+              </ListItem>
+
+              <ListItem key={"view"} disablePadding>
+                <NavLink to="/All">
+                  <Button
+                    variant="text"
+                    sx={{
+                      marginLeft: "15px",
+                      fontSize: { xs: "15px", md: "25px" },
+                      color: "#3F826D",
+                      "&:hover": {
+                        color: "#FF725B",
+                      },
+                      textTransform: "none",
+                    }}
+                    startIcon={<ViewCarouselIcon sx={{ color: "#E2725B" }} />}
+                  >
+                    View All Forums
+                  </Button>
+                </NavLink>
+              </ListItem>
+            </List>
+            <Divider />
           </Box>
+        </Drawer>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ width: "100%" }}
+        >
+          <NavLink to="/">
+            <Stack
+              direction="row"
+              spacing={2}
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <IconButton>
+                <img style={{ height: "55px" }} src={logo} alt="Fora" />
+              </IconButton>
 
-          <Stack direction="row" spacing={2}>
-            <NavLink to="/createNewForum">
-              <Button
-                variant="contained"
+              <Typography
+                variant="h5"
                 sx={{
-                  color: "#FFFFFF",
-                  backgroundColor: "#E2725B",
-                  fontWeight: "bold",
-                  borderRadius: "10px",
-                  textTransform: "none",
-                  height: '40px',
-                  padding: '15px',
-                  "&:hover": {
-                    bgcolor: "#FF725B",
-                  },
+                  fontSize: "30px",
+                  fontWeight: "bolder",
                 }}
-                startIcon={<Add />}
               >
-                Create Forum
-              </Button>
-            </NavLink>
-            
-          
-              <Button
-                variant="contained"
-                sx={{
-                  color: "#FFFFFF",
-                  backgroundColor: "#E2725B",
-                  fontWeight: "bold",
-                  borderRadius: "10px",
-                  textTransform: "none",
-                  height: '40px',
-                  padding: '15px',
-                  "&:hover": {
-                    bgcolor: "#FF725B",
-                  },
-                }}
-                onClick={onViewForum}
-              >
-                View All Forums
-              </Button>
-          
-
-            <Stack direction="row">
-              <form>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder=""
-                  style={{
-                    width: "100%",
-                    border: "3px solid #E2725B",
-                    fontWeight: "bold",
-                    padding: "5px",
-                  }}
-                />
-              </form>
-              <button
-                style={{
-                  color: "#FFFFFF",
-                  backgroundColor: "#E2725B",
-                  fontWeight: "bold",
-                  padding: "10px",
-                  borderRadius: "10px",
-                }}
-                onClick={() => onViewForum("All")}
-              >
-                Search
-              </button>
+                Fora
+              </Typography>
+            </Stack>
+          </NavLink>
+          <Stack
+            direction="row"
+            spacing={2}
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ marginLeft: "10px" }}
+          >
+            <Stack
+              direction="row"
+              sx={{
+                borderRadius: "10px",
+                padding: "5px",
+                border: "2px solid #E2725B",
+                width: { xs: "180px", md: "100%" },
+              }}
+            >
+              <InputBase
+                value={title}
+                placeholder="Search Forum by Title"
+                inputProps={{ "aria-label": "search" }}
+                sx={{ fontSize: { xs: "15px", md: "20px" }, color: "#FFFFFF" }}
+                onChange={handleSearchChange}
+              />
+              <SearchIcon onClick={handleSearchClick} />
             </Stack>
           </Stack>
-        </Toolbar>
-      </AppBar>
-
-      {/*  <nav
-        style={{
-          background: "#3F826D",
-          border: "bold",
-          borderColor: "#3F826D",
-          color: "#FFFFFF",
-        }}
-      >
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
-            <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
-              <NavLink className="flex flex-shrink-0 items-center mr-4" to="/">
-                <img style={{ height: "55px" }} src={logo} alt="Fora" />
-                <div>
-                  <span
-                    style={{
-                      display: "block",
-                      color: "#FFFFFF",
-                      fontSize: "30px",
-                      fontWeight: "bolder",
-                      marginLeft: "10px",
-                    }}
-                    className="  text-white text-2xl font-bold ml-2"
-                  >
-                    Fora
-                  </span>
-
-                  <p
-                    style={{
-                      display: "block",
-                      color: "#FFFFFF",
-                      fontSize: "15px",
-                      marginLeft: "10px",
-                    }}
-                  >
-                    Express your thoughts freely and anonymously
-                  </p>
-                </div>
-              </NavLink>
-            </div>
-          </div>
-        </div>
-      </nav> */}
-    </>
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 };
 
