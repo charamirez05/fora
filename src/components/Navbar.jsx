@@ -42,11 +42,12 @@ const Navbar = () => {
   };
 
   const handleSearchChange = (event) => {
-    setTitle(event.target.value)
-  }
+    setTitle(event.target.value);
+  };
   const handleSearchClick = () => {
-    navigate(`/search/:${title}`)
-  }
+    navigate(`/search/${title}`);
+    setTitle("");
+  };
 
   return (
     <AppBar>
@@ -218,7 +219,15 @@ const Navbar = () => {
                 sx={{ fontSize: { xs: "15px", md: "20px" }, color: "#FFFFFF" }}
                 onChange={handleSearchChange}
               />
-              <SearchIcon onClick={handleSearchClick} />
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <SearchIcon onClick={handleSearchClick} />
+              </Box>
             </Stack>
           </Stack>
         </Stack>

@@ -12,6 +12,7 @@ import ForumsPage from "./pages/ForumsPage";
 import MainLayout from "./layouts/MainLayout";
 import CreateNewForum from "./pages/CreateNewForum";
 import ForumPage from "./pages/ForumPage";
+import { SearchResultsPage } from "./pages/SearchResultsPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -20,8 +21,8 @@ const App = () => {
         <Route index element={<HomePage />} />
         <Route path="/:topic" element={<ForumsPage />} />
         <Route path="/forum/:id" element={<ForumPage />} />
-
-        <Route path="/createNewForum" element={<CreateNewForum />} />
+        <Route path="/search/:title" element={<SearchResultsPage />} />
+        <Route path="/create-forum" element={<CreateNewForum />} />
       </Route>
     )
   );

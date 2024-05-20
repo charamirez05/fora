@@ -18,6 +18,12 @@ export function getForumById(id) {
     .then((res) => res.data);
 }
 
+export function getAllForumsByTitle(title) {
+  return axios
+    .get(`https://fora-backend.onrender.com/forums?title=${title}`)
+    .then((res) => res.data);
+}
+
 export function createForum(forum) {
   return axios
     .post("https://fora-backend.onrender.com/forums", forum)
