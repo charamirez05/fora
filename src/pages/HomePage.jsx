@@ -22,6 +22,9 @@ const HomePage = () => {
     navigate(`/forums/${topic}`);
   };
 
+  if(isLoading)
+    return <ForumLoading loading={isLoading} />
+
   return (
     <Box
       sx={{
@@ -75,7 +78,7 @@ const HomePage = () => {
               </TabList>
             </Box>
 
-            <ForumLoading loading={isLoading} />
+            
             <HomeTabPanel topic={"general"} forums={data} />
             <HomeTabPanel topic={"math"} forums={data} />
             <HomeTabPanel topic={"popculture"} forums={data} />
@@ -83,7 +86,9 @@ const HomePage = () => {
             <HomeTabPanel topic={"foreign"} forums={data} />
           </Box>
 
-          {data && data.length !== 0 ? (
+          
+          {data && !isLoading && data.length !== 0 ? (
+            
             <Box item display="flex" justifyContent="center">
               <Button
                 variant="text"
@@ -101,7 +106,7 @@ const HomePage = () => {
                 View All
               </Button>
             </Box>
-          ) : (
+          ) :  (
             <Box
               display="flex"
               justifyContent="center"

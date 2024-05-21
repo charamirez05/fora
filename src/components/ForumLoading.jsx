@@ -6,22 +6,30 @@ export const ForumLoading = ({ loading }) => {
     <>
       {loading ? (
         <Box
-          display="flex"
-          justifyContent="center"
           sx={{
-            padding: "50px", // px-6 (6 * 4px = 24px)
+            padding: { xs: "100px 10px 100% 10px", md: "90px 25px 100% 25px" },
           }}
         >
-          <Typography
-            variant="h4"
+          <Box
             sx={{
-              fontSize: { xs: "25px", md: "30px" },
-              color: "#3F826D",
-              fontWeight: "bold",
+              padding: { xs: "10px", md: "20px" },
+              margin: { xs: "10px", md: "10px" },
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
             }}
           >
-            Loading...
-          </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: { xs: "25px", md: "30px" },
+                color: "#3F826D",
+                fontWeight: "bold",
+              }}
+            >
+              Loading...
+            </Typography>
+          </Box>
         </Box>
       ) : (
         <></>

@@ -8,6 +8,7 @@ import { getForumById, rateForum, deleteForum } from "../services/forums";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import StarIcon from "@mui/icons-material/Star";
+import { ForumLoading } from "../components/ForumLoading";
 
 const ForumPage = () => {
   const { id } = useParams();
@@ -64,6 +65,11 @@ const ForumPage = () => {
 
     navigate(`/forums/${forumQuery.data.topic}`);
   };
+
+
+  if(forumQuery.isLoading)
+    return <ForumLoading loading={forumQuery.isLoading} />
+
 
   return (
     <Box
