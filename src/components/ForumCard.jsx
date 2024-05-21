@@ -1,9 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { FaMapMarker } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
 
-const ForumCard = ({ forum, topic }) => {
+import { NavLink, useParams } from "react-router-dom";
+
+const ForumCard = ({ forum }) => {
+  const {topic} = useParams();
+
+ 
   return (
     <Box sx={{ padding: "0px 0px 10px 0" }}>
       <Box
@@ -19,7 +22,8 @@ const ForumCard = ({ forum, topic }) => {
             variant="subtitle2"
             sx={{ marginBottom: "5px", fontSize: { xs: "10px", md: "15px" } }}
           >
-            {forum.date}
+            {forum && typeof forum.date === 'string' ? forum.date.split("T")[0] : ''}
+          
           </Typography>
 
           {topic === "All" ? (
@@ -33,7 +37,7 @@ const ForumCard = ({ forum, topic }) => {
                 color: "#3F826D",
               }}
             >
-              {forum.topic}
+              {forum.topic.charAt(0).toUpperCase() + forum.topic.slice(1)}
             </Typography>
           ) : (
             <></>

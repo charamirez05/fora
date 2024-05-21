@@ -29,7 +29,7 @@ const ForumCommentCard = ({ comment }) => {
             variant="h6"
             sx={{ color: "grey", fontSize: { xs: "12px", md: "15px" } }}
           >
-            {comment.date.split("T")[0]}
+            {comment && typeof comment.date === 'string' ? comment.date.split("T")[0] : ''}
           </Typography>
         </Stack>
 

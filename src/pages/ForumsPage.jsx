@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import ForumCard from "../components/ForumCard";
 import { Link, useNavigate } from "react-router-dom";
-
 import useForums from "../services/useForums";
-
 import { Box, Pagination, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ForumLoading } from "../components/ForumLoading";
@@ -29,18 +26,17 @@ const ForumsPage = () => {
           className="text-indigo-500 hover:text-indigo-600 flex items-center"
         >
           <ArrowBackIcon className="mr-2" style={{ color: "#E2725B" }} />
-          </Link>
-          <Typography
-            variant="h6"
-            sx={{
-              color: "#3F826D",
-              fontWeight: "bold",
-              fontSize: { xs: "20px", md: "30px" },
-            }}
-          >
-            {topic.charAt(0).toUpperCase() + topic.slice(1)} Forums
-          </Typography>
-       
+        </Link>
+        <Typography
+          variant="h6"
+          sx={{
+            color: "#3F826D",
+            fontWeight: "bold",
+            fontSize: { xs: "20px", md: "30px" },
+          }}
+        >
+          {topic.charAt(0).toUpperCase() + topic.slice(1)} Forums
+        </Typography>
       </Box>
       <ForumsListing forums={data} loading={isLoading} />
     </Box>

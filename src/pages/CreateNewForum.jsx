@@ -59,7 +59,7 @@ const CreateNewForum = () => {
 
     toast.success("Forum created successfully!");
 
-    return navigate("/All");
+    return navigate("/forums/All");
   };
 
   const handleTopicChange = (event) => {
@@ -88,7 +88,7 @@ const CreateNewForum = () => {
             color: "#3F826D",
             textAlign: "center",
             fontWeight: "bold",
-            marginBottom: '15px',
+            marginBottom: "15px",
             fontSize: { xs: "25px", md: "30px" },
           }}
           gutterBottom
@@ -105,7 +105,6 @@ const CreateNewForum = () => {
                 "& .MuiInputLabel-root": {
                   color: "#3F826D",
                 },
-               
               }}
               {...register("author", {
                 required: {
@@ -134,7 +133,9 @@ const CreateNewForum = () => {
               >
                 <MenuItem value="general">General</MenuItem>
                 <MenuItem value="math">Math</MenuItem>
-                <MenuItem value="popculture">PopCulture</MenuItem>
+                <MenuItem value="popculture">Pop Culture</MenuItem>
+                <MenuItem value="science">Science</MenuItem>
+                <MenuItem value="foreign">Foreign</MenuItem>
               </Select>
             </FormControl>
             <TextField

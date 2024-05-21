@@ -59,23 +59,22 @@ const ForumPage = () => {
     if (!confirm) return;
 
     deleteForumMutation.mutate({ id: id });
-    console.log("test delete");
 
     toast.success("Forum deleted successfully!");
 
-    navigate(`/${forumQuery.data.topic}`);
+    navigate(`/forums/${forumQuery.data.topic}`);
   };
 
   return (
     <Box
       sx={{
         backgroundColor: "rgba(209, 250, 229, 0.3)",
-        padding: { xs: "100px 0px 50px 0px", md: "100px 25px 100px 25px" },
+        padding: { xs: "100px 0px 100% 0px", md: "100px 25px 100% 25px" },
       }}
     >
       <Box sx={{ paddingLeft: "25px" }}>
         <Link
-          to={`/${forumQuery.data && forumQuery.data.topic}`}
+          to={`/forums/${forumQuery.data && forumQuery.data.topic}`}
           className="text-indigo-500 hover:text-indigo-600 flex items-center"
         >
           <ArrowBackIcon style={{ color: "#E2725B", marginRight: "2px" }} />
@@ -103,9 +102,9 @@ const ForumPage = () => {
       >
         <Typography
           variant="subtitle1"
-          sx={{ marginBottom: "5px", fontSize: { xs: "15px", md: "20px" } }}
+          sx={{ marginBottom: "5px", fontSize: { xs: "10px", md: "15px" } }}
         >
-          {forumQuery.data && forumQuery.data.date}
+          {forumQuery.data && forumQuery.data.date.split("T")[0]}
         </Typography>
         <Typography
           variant="h4"
@@ -123,7 +122,7 @@ const ForumPage = () => {
           sx={{
             marginBottom: "5px",
             fontStyle: "italic",
-            fontSize: { xs: "15px", md: "20px" },
+            fontSize: { xs: "10px", md: "15px" },
           }}
         >
           by {forumQuery.data && forumQuery.data.author}
@@ -149,10 +148,10 @@ const ForumPage = () => {
           spacing={2}
           alignItems="center"
           justifyContent="space-between"
-          sx={{ paddingTop: "20px",  width: '100%' }}
+          sx={{ paddingTop: "20px", width: "100%" }}
         >
           <Stack direction="row">
-          <StarIcon
+            <StarIcon
               sx={{
                 color: "#E2725B",
                 margin: { xs: "0 3px 8px 0", md: "3px 5px 0 0 " },
@@ -168,7 +167,6 @@ const ForumPage = () => {
             >
               {forumQuery.data && forumQuery.data.stars} Stars
             </Typography>
-           
           </Stack>
 
           <Box>
@@ -227,7 +225,7 @@ const ForumPage = () => {
         {forumQuery.data &&
         forumQuery.data.comments &&
         forumQuery.data.comments.length !== 0 ? (
-          <Box >
+          <Box>
             <Typography
               variant="h4"
               sx={{
@@ -235,26 +233,28 @@ const ForumPage = () => {
                 color: "#3F826D",
                 marginBottom: "5px",
                 fontSize: { xs: "20px", md: "25px" },
-                padding: "0 20px 0 15px" 
+                padding: "0 20px 0 15px",
               }}
             >
               Comments
             </Typography>
-            {forumQuery.data.comments.map((comment) => (
-              <ForumCommentCard key={comment.id} comment={comment} />
-            ))}
+            {forumQuery.data.comments &&
+              forumQuery.data.comments.map((comment) => (
+                <ForumCommentCard key={comment.id} comment={comment} />
+              ))}
           </Box>
         ) : (
           <Box sx={{ paddingLeft: "25px" }}>
             <Typography
               variant="h4"
-              style={{
+              sx={{
                 fontWeight: "bold",
                 color: "#3F826D",
                 marginBottom: "5px",
+                fontSize: { xs: "15px", md: "20px" },
               }}
             >
-              No Comments Yet.
+              No Comments Yet
             </Typography>
           </Box>
         )}
