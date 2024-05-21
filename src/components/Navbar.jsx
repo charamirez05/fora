@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Box,
   Button,
   Divider,
   Drawer,
-  Grid,
   IconButton,
   InputBase,
   List,
   ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Stack,
   Toolbar,
   Typography,
@@ -27,13 +23,11 @@ import { Home, Inbox } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
 import HomeIcon from "@mui/icons-material/Home";
+import { NavListItem } from "./NavListItem";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const onViewForum = () => {
-    navigate(`/All`);
-  };
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = useState("");
 
@@ -145,24 +139,23 @@ const Navbar = () => {
                 </NavLink>
               </ListItem>
 
-              <ListItem key={"view"} disablePadding>
-                <NavLink to="/All">
-                  <Button
-                    variant="text"
-                    sx={{
-                      marginLeft: "15px",
-                      fontSize: { xs: "15px", md: "25px" },
-                      color: "#3F826D",
-                      "&:hover": {
-                        color: "#FF725B",
-                      },
-                      textTransform: "none",
-                    }}
-                    startIcon={<ViewCarouselIcon sx={{ color: "#E2725B" }} />}
-                  >
-                    View All Forums
-                  </Button>
-                </NavLink>
+              <ListItem key={"All"} disablePadding>
+                <NavListItem topic="All" />
+              </ListItem>
+              <ListItem key={"general"} disablePadding>
+                <NavListItem topic="general" />
+              </ListItem>
+              <ListItem key={"math"} disablePadding>
+                <NavListItem topic="math" />
+              </ListItem>
+              <ListItem key={"popculture"} disablePadding>
+                <NavListItem topic="popculture" />
+              </ListItem>
+              <ListItem key={"science"} disablePadding>
+                <NavListItem topic="science" />
+              </ListItem>
+              <ListItem key={"foreign"} disablePadding>
+                <NavListItem topic="foreign" />
               </ListItem>
             </List>
             <Divider />

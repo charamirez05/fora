@@ -3,7 +3,7 @@ import React from "react";
 
 const ForumCommentCard = ({ comment }) => {
   return (
-    <Box sx={{ padding: "5px 5px 5px 20px" }}>
+    <Box sx={{ padding: "3px 5px 5px 20px" }}>
       <Box
         sx={{
           backgroundColor: "white", // bg-white
@@ -29,7 +29,7 @@ const ForumCommentCard = ({ comment }) => {
             variant="h6"
             sx={{ color: "grey", fontSize: { xs: "12px", md: "15px" } }}
           >
-            {comment.date.split("T")[0]}
+            {comment && typeof comment.date === 'string' ? comment.date.split("T")[0] : ''}
           </Typography>
         </Stack>
 

@@ -9,7 +9,7 @@ export const HomeTabPanel = ({ topic, forums }) => {
       <TabPanel value={topic}>
         {forums &&
           forums
-            .slice(0, 4)
+            .slice(0, 3)
             .map((forum) => (
               <ForumCard key={forum.id} forum={forum} isHome={true} />
             ))}

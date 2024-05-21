@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-
 import ForumCard from "../components/ForumCard";
-
 import { Box, Pagination, Typography } from "@mui/material";
-
 import { ForumLoading } from "../components/ForumLoading";
 
 export const ForumsListing = ({ forums, loading }) => {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 4;
   const handleChange = (event, value) => {
     setPage(value);
   };
@@ -31,7 +28,7 @@ export const ForumsListing = ({ forums, loading }) => {
     >
       <ForumLoading loading={loading} />
 
-      {forums && !loading &&  forums.length !== 0 ? (
+      {forums && !loading && forums.length !== 0 ? (
         <Box
           sx={{
             margin: "10px",
@@ -65,7 +62,6 @@ export const ForumsListing = ({ forums, loading }) => {
           display="flex"
           justifyContent="center"
           sx={{
-            
             padding: "50px ", // px-6 (6 * 4px = 24px)
           }}
         >

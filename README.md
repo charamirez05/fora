@@ -26,7 +26,7 @@ Updates as of May 22, 2024
 - Converted HTML components to MUI Components
 - Mobile Responsiveness
 - Stopped the use useContext 
-
+> Mobile view is tested on dimensions of Samsung Galxy S20 Ultra on developer tools
 
 > Backend JSON Server is in a separate git repository and deployed in Render.
 

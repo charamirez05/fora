@@ -47,7 +47,11 @@ const CommentModal = ({ closeModal, forum }) => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "rgba(209, 250, 229, 0.3)" }}>
+    <Box
+      sx={{
+        backgroundColor: "rgba(209, 250, 229, 0.3)",
+      }}
+    >
       <Box
         sx={{
           position: "fixed",
@@ -55,6 +59,7 @@ const CommentModal = ({ closeModal, forum }) => {
           left: "0",
           width: "100%",
           height: "100%",
+
           backgroundColor: "rgba(0,0,0,0.5)",
           display: "flex",
           justifyContent: "center",
@@ -87,7 +92,7 @@ const CommentModal = ({ closeModal, forum }) => {
               <CloseIcon
                 sx={{
                   position: "relative",
-                  left: 250,
+                  left: { xs: 50, md: 250 },
                   alignContent: "left",
                 }}
                 onClick={closeModal}

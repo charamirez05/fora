@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-
-import ForumCard from "../components/ForumCard";
-import { Link, useNavigate } from "react-router-dom";
-
-import useForums from "../services/useForums";
-
-import { Box, Pagination, Stack, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Box, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { ForumLoading } from "../components/ForumLoading";
 import { useQuery } from "@tanstack/react-query";
-import { getAllForumsByTitle, getAllForumsByTopic } from "../services/forums";
+import { getAllForumsByTitle } from "../services/forums";
 import { ForumsListing } from "../components/ForumsListing";
 
 export const SearchResultsPage = () => {
