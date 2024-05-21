@@ -15,6 +15,10 @@ export const ForumsListing = ({ forums, loading }) => {
   const paginatedForums = forums && forums.slice(startIndex, endIndex);
   const pageCount = Math.ceil(forums && forums.length / itemsPerPage);
 
+
+  if(loading)
+    return <ForumLoading loading={loading} />
+
   return (
     <Box
       sx={{
@@ -26,9 +30,9 @@ export const ForumsListing = ({ forums, loading }) => {
         borderRadius: "10px", // rounded-md (8px border radius)
       }}
     >
-      <ForumLoading loading={loading} />
+     
 
-      {forums && !loading && forums.length !== 0 ? (
+      {forums && forums.length !== 0 ? (
         <Box
           sx={{
             margin: "10px",
