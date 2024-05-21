@@ -197,13 +197,6 @@ const ForumPage = () => {
             >
               Add a Comment
             </Button>
-            {isModalOpen && (
-              <CommentModal
-                closeModal={closeModal}
-                forum={forumQuery.data && forumQuery.data}
-              />
-            )}
-
             <Button
               variant="text"
               sx={{
@@ -217,6 +210,12 @@ const ForumPage = () => {
             >
               Delete
             </Button>
+            {isModalOpen && (
+              <CommentModal
+                closeModal={closeModal}
+                forum={forumQuery.data && forumQuery.data}
+              />
+            )}
           </Box>
         </Stack>
       </Box>

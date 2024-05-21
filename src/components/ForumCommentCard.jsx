@@ -3,7 +3,7 @@ import React from "react";
 
 const ForumCommentCard = ({ comment }) => {
   return (
-    <Box sx={{ padding: "5px 5px 5px 20px" }}>
+    <Box sx={{ padding: "3px 5px 5px 20px" }}>
       <Box
         sx={{
           backgroundColor: "white", // bg-white
